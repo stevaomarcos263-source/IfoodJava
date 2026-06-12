@@ -7,11 +7,11 @@
 
 ## 👥 Equipe
 
-| Nome | Matrícula |
-|------|-----------|
-| Integrante 1 | 000000 |
-| Integrante 2 | 000000 |
-| Integrante 3 | 000000 |
+| Nome                          | Matrícula    |
+|-------------------------------|--------------|
+| José Marcos de Oliveira Silva | 202525020002 |
+| Integrante 2                  | 000000       |
+| Integrante 3                  | 000000       |
 
 > ✏️ Atualize esta tabela com os dados reais da equipe.
 
