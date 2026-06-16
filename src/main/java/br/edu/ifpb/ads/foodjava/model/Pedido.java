@@ -2,9 +2,9 @@ package br.edu.ifpb.ads.foodjava.model;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
-import java.util.ArrayList;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.ArrayList;
 import br.edu.ifpb.ads.foodjava.model.enums.StatusPedido;
 
 public class Pedido {
@@ -14,14 +14,14 @@ public class Pedido {
     private String id;
     private String cpfCliente;
     private String dataHora;
-    private List<ItemPedido> itens;
+    private List<PedidoPreMoldado> itens;
     private double valorTotal;
     private StatusPedido statusPedido;
 
     protected Pedido(){}
-    public Pedido(String cpfCliente, List<ItemPedido> itensDoCarrinho){
+    public Pedido(String cpfCliente, List<PedidoPreMoldado> itensPedido){
         this.cpfCliente = cpfCliente;
-        this.itens = new ArrayList<>();
+        itens = new ArrayList<>(itensPedido);
         id = UUID.randomUUID().toString();
         dataHora = LocalDateTime.now().format(formatter);
         statusPedido = StatusPedido.AGUARDANDO_CONFIRMACAO;
@@ -30,7 +30,7 @@ public class Pedido {
 
     // Getters ->
     public double calcularTotal(){
-        return this.itens.stream().mapToDouble(ItemPedido::getSubTotal).sum();
+        return this.itens.stream().mapToDouble(PedidoPreMoldado::getSubTotal).sum();
     }
     public String getId(){
         return id;

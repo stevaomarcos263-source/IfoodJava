@@ -1,16 +1,16 @@
 package br.edu.ifpb.ads.foodjava.model;
 
-public class ItemPedido {
+public class PedidoPreMoldado {
 
-    private ItemCardapio item;
+    private ItemCardapio itemCardapio;
     private int qtda;
     private double precoUnitario;
 
-    protected ItemPedido(){}
-    public ItemPedido(ItemCardapio item, int qtda){
-        this.item = item;
+    protected PedidoPreMoldado(){}
+    public PedidoPreMoldado(ItemCardapio itemCardapio, int qtda){
+        this.itemCardapio = itemCardapio;
         this.qtda = qtda;
-        precoUnitario = item.getPreco();
+        precoUnitario = itemCardapio.getPreco();
     }
 
     // Getters ->
@@ -18,7 +18,7 @@ public class ItemPedido {
         return precoUnitario*qtda;
     }
     public ItemCardapio getItem(){
-        return item;
+        return itemCardapio;
     }
     public int getQtda(){
         return qtda;
@@ -33,4 +33,5 @@ public class ItemPedido {
             this.qtda = qtda;
         }
     }
+
 }
