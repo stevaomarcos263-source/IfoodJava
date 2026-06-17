@@ -51,6 +51,7 @@ public class Endereco {
         return cidade;
     }
 
+    @Override
     public String toString(){
         return String.format("N° %d,%n"+
                 "Rua: %s,%n"+

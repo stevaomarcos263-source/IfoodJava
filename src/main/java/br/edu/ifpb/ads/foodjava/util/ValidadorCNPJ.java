@@ -8,6 +8,12 @@ public class ValidadorCNPJ {
         int somaValidacaoUm = 0;
         int somaValidacaoDois = 0;
 
+        // proteção de borda ->
+        if(cnpj==null || cnpj.isBlank() || cnpj.isEmpty()){
+            return false;
+        }
+        // <- proteção de borda;
+
         try {
             // Limpando o cnpj e gerando um novo ->
             for (int i = 0; i < cnpj.length(); i++) {
@@ -44,7 +50,7 @@ public class ValidadorCNPJ {
                 return false;
             }
         }catch(Exception e){
-            System.out.println("Erro no método isCNPJ -> "+e.getMessage());
+            System.err.println("Erro no método isCNPJ -> "+e.getMessage());
         }
         return true;
     }

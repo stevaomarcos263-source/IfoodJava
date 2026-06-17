@@ -55,6 +55,7 @@ public class ValidadorCPF {
             return true;
 
         } catch (Exception e) {
+            System.err.println("Erro no método isCNPJ: "+e.getMessage());
             return false;
         }
     }

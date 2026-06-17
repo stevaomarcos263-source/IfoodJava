@@ -11,12 +11,12 @@ public class Pedido {
 
     public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
-    private String id;
+    private String id;  // ->
     private String cpfCliente;
-    private String dataHora;
+    private String dataHora;  // ->
     private List<PedidoPreMoldado> itens;
-    private double valorTotal;
-    private StatusPedido statusPedido;
+    private double valorTotal; // ->
+    private StatusPedido statusPedido; // ->
 
     protected Pedido(){}
     public Pedido(String cpfCliente, List<PedidoPreMoldado> itensPedido){
@@ -28,9 +28,24 @@ public class Pedido {
         valorTotal = calcularTotal();
     }
 
+    @Override
+    public String toString(){
+        return String.format(
+                "================== PEDIDO ==================%n"+
+                "ID: %s%n"+
+                "CPF: %s%n"+
+                "Status: %s%n"+
+                "Data/Hora: %s%n"+
+                "Pedidos: %s%n"+
+                "Valor total: %.2f%n",id,cpfCliente,statusPedido,dataHora,itens,getValorTotal());
+    }
     // Getters ->
     public double calcularTotal(){
         return this.itens.stream().mapToDouble(PedidoPreMoldado::getSubTotal).sum();
+    }
+    public double getValorTotal(){
+        valorTotal=calcularTotal();
+        return valorTotal;
     }
     public String getId(){
         return id;
@@ -44,16 +59,12 @@ public class Pedido {
     public StatusPedido getStatusPedido(){
         return statusPedido;
     }
-    public double getValorTotal(){
-        return valorTotal;
-    }
+
 
     // Stters ->
     public void setStatusPedido(StatusPedido statusPedido){
         this.statusPedido = statusPedido;
     }
-
-
 
 
 }
