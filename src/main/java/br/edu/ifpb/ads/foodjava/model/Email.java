@@ -6,7 +6,12 @@ public class Email {
     private String senha;
 
     protected Email(){}
-    public Email(String email, String senha){
+    public Email(String email, String senha) throws EmailInvalidoException {
+        validarCampoDoEmail(email);
+        validarArroba(email);
+        validarDominio(email);
+        validarPontos(email);
+
         this.endereco = email;
         this.senha = senha;
     }
