@@ -63,7 +63,12 @@ public class Pedido {
 
     // Stters ->
     public void setStatusPedido(StatusPedido statusPedido){
-        this.statusPedido = statusPedido;
+        if(statusPedido == null){
+            return;
+        }
+        if(this.statusPedido.getPeso()+1==statusPedido.getPeso()) {
+            this.statusPedido = statusPedido;
+        }
     }
 
 

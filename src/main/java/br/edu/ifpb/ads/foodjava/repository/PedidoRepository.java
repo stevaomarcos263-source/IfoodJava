@@ -4,12 +4,13 @@ import br.edu.ifpb.ads.foodjava.model.Pedido;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
+
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,22 +20,20 @@ public class PedidoRepository implements Repository<Pedido,String> {
 
 
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
-
     private List<Pedido> pedidosCache;
 
     public PedidoRepository(){
         inicialzarArquivo();
         pedidosCache = buscarTodos();
-        if(pedidosCache == null){
-            pedidosCache = new ArrayList<>();
-        }
     }
 
     // Privado 00
     private void inicialzarArquivo(){
         try{
             File arquivo = new File(FILE_PATH);
+            if(arquivo.getParentFile() != null){
+                arquivo.getParentFile().mkdirs();
+            }
             if(!arquivo.exists()){
                 arquivo.createNewFile();
                 salvarListaNoArquivo(new ArrayList<>());

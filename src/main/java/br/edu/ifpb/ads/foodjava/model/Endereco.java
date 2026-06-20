@@ -10,28 +10,43 @@ public class Endereco {
 
     protected Endereco(){}
     public Endereco(int numeroDaCasa, String rua, String bairro, String cep,String cidade ){
-        this.numeroDaCasa = numeroDaCasa;
-        this.rua = rua;
-        this.bairro = bairro;
-        this.cep = cep;
-        this.cidade = cidade;
+        setNumeroDaCasa(numeroDaCasa);
+        setRua(rua);
+        setBairro(bairro);
+        setCidade(cidade);
     }
 
     // Stters ->
     public void setNumeroDaCasa(int numeroDaCasa){
+        if(numeroDaCasa<0){
+            throw new IllegalArgumentException("Número da casa inválido!");
+        }
         this.numeroDaCasa = numeroDaCasa;
     }
     public void setRua(String rua){
-        this.rua = rua;
+        if(rua==null || rua.isBlank()){
+            throw new IllegalArgumentException("Rua com endereço vazio!");
+        }
+        this.rua = rua.trim();
     }
     public void setBairro(String bairro){
-        this.bairro = bairro;
+        if(bairro==null || bairro.isBlank()){
+            throw new IllegalArgumentException("Bairro com endereço vazio!");
+        }
+        this.bairro = bairro.trim();
+
     }
     public void setCep(String cep){
-        this.cep = cep;
+       if(cep==null || cep.isBlank()){
+           throw new IllegalArgumentException("CEP com endereço vazio!");
+       }
+        this.cep = cep.trim();
     }
     public void setCidade(String cidade){
-        this.cidade = cidade;
+        if(cidade==null || cidade.isBlank()){
+            throw new IllegalArgumentException("Cidade com endereço vazio!");
+        }
+        this.cidade = cidade.trim();
     }
 
     // Getters ->
@@ -51,6 +66,13 @@ public class Endereco {
         return cidade;
     }
 
+    public void atualizarEndereco(int numeroDaCasa, String rua, String bairro, String cep, String cidade){
+        setNumeroDaCasa(numeroDaCasa);
+        setRua(rua);
+        setBairro(bairro);
+        setCidade(cidade);
+        setCep(cep);
+    }
     @Override
     public String toString(){
         return String.format("N° %d,%n"+

@@ -35,7 +35,7 @@ public class PedidoPreMoldado {
     }
     @Override
     public String toString(){
-        String nomeItem = (getItem().getNome()!=null)? nomeItem=getItem().getNome() : "Item não identificado";
+        String nomeItem = (getItem().getNome()!=null)? nomeItem = getItem().getNome() : "Item não identificado";
         return String.format("%s (Qtd: %d) -Preço Unit: %.2f - Subtotal: %.2f",nomeItem,getQtda(),getPrecoUnitario(),getSubTotal());
     }
 

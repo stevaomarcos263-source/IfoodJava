@@ -1,5 +1,6 @@
 package br.edu.ifpb.ads.foodjava.model;
 
+import br.edu.ifpb.ads.foodjava.exception.PrecoInvalidoException;
 import br.edu.ifpb.ads.foodjava.model.enums.CategoriaComida;
 
 public class ItemCardapio {
@@ -12,7 +13,11 @@ public class ItemCardapio {
     private String imagemPath;
 
     protected ItemCardapio(){}
-    public ItemCardapio(String nome, String descricao, double preco, CategoriaComida categoriaComida, boolean disponivel, String imagemPath){
+    public ItemCardapio(String nome, String descricao, double preco, CategoriaComida categoriaComida,
+                        boolean disponivel, String imagemPath) throws PrecoInvalidoException {
+
+        controlePreco(preco);
+
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
@@ -46,5 +51,11 @@ public class ItemCardapio {
     }
     public void setImagemPath(String imagemPath){
         this.imagemPath = imagemPath;
+    }
+
+    private static void controlePreco(double preco)throws PrecoInvalidoException{
+        if(preco<=0){
+            throw new PrecoInvalidoException("Preço menor ou igual a zero, valor não permitido!");
+        }
     }
 }

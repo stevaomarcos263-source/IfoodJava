@@ -61,5 +61,21 @@ public class Restaurante {
     public void setLogoDoRestaurante(String logoDoRestaurante){
         this.logoDoRestaurante = logoDoRestaurante;
     }
+    public void setNomeDoRestaurante(String nomeDoRestaurante){
+        this.nomeDoRestaurante = nomeDoRestaurante;
+    }
+    public void setEnderecoDoRestaurante(Endereco enderecoDoRestaurante){
+        this.enderecoDoRestaurante = enderecoDoRestaurante;
+    }
+    public void setCategoriaCulinaria(String categoriaCulinaria){
+        this.categoriaCulinaria = categoriaCulinaria;
+    }
+    public void setNomeDoGerente(String nomeDoGerente){
+        gerente.setNome(nomeDoGerente);
+    }
+
+    public static Restaurante retornarRestauranteVazio(){
+        return new Restaurante();
+    }
 
 }

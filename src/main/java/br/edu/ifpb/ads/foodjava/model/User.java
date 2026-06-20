@@ -26,5 +26,9 @@ public abstract class User{
         return id;
     }
 
+    public void setNome(String nome){
+        this.nome = nome;
+    }
+
 
 }
