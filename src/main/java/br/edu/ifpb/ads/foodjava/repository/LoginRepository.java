@@ -10,7 +10,6 @@ import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 import java.lang.reflect.Type;
 import com.google.gson.reflect.TypeToken;
 
-
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -19,18 +18,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.*;
 
-
 public class LoginRepository implements Repository<User,String > {
 
     RuntimeTypeAdapterFactory<User> adaptacaoDeUsusrio = RuntimeTypeAdapterFactory.of(User.class,"type").
-            registerSubtype(Cliente.class,"CLIENTE").
-            registerSubtype(Gerente.class,"GERENTE");
+            registerSubtype(Cliente.class,"Cliente").
+            registerSubtype(Gerente.class,"Gerente");
 
     public static final String FILE_PATH = "src/main/resources/data/login.json";
     private final Gson gson = new GsonBuilder().registerTypeAdapterFactory(adaptacaoDeUsusrio).setPrettyPrinting().create();
 
     private List<User> listaDeLogins;
-
 
     public LoginRepository(){
         inicializarArquivoLogin();
@@ -53,11 +50,13 @@ public class LoginRepository implements Repository<User,String > {
 
     private void salvarUsuarioNoLogin(List<User> usuarios){
         try(FileWriter writer = new FileWriter(FILE_PATH)){
-            gson.toJson(usuarios,writer);
+            Type tipoDoObjeto = TypeToken.getParameterized(List.class, User.class).getType();
+            gson.toJson(usuarios,tipoDoObjeto,writer);
         }catch(IOException e){
         System.err.println("Erro ao tentar salvar lista no ->login.json<- : "+e.getMessage());
         }
     }
+
     @Override
     public void salvar(User usuario){
         listaDeLogins.add(usuario);

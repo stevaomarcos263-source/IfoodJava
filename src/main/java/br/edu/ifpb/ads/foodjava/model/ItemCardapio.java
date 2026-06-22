@@ -52,6 +52,12 @@ public class ItemCardapio {
     public void setImagemPath(String imagemPath){
         this.imagemPath = imagemPath;
     }
+    public void setPreco(double preco) throws PrecoInvalidoException{
+        if(preco<=0){
+            throw new PrecoInvalidoException("Preço inválido, igual ou menor que zero!");
+        }
+        this.preco = preco;
+    }
 
     private static void controlePreco(double preco)throws PrecoInvalidoException{
         if(preco<=0){

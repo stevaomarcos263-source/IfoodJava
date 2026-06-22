@@ -1,12 +1,13 @@
 package br.edu.ifpb.ads.foodjava.model;
 
+import br.edu.ifpb.ads.foodjava.exception.FormatoSenhaInvalidoException;
 import br.edu.ifpb.ads.foodjava.exception.SenhaInvalidaException;
 
 public class Senha {
 
     private String senha;
 
-    public Senha(String senha) throws SenhaInvalidaException {
+    public Senha(String senha) throws FormatoSenhaInvalidoException {
         validarCampoSenha(senha);
         validarTamanhoSenha(senha);
         validarMaiusculaSenha(senha);
@@ -22,17 +23,17 @@ public class Senha {
         return senha;
     }
 
-    private void validarCampoSenha(String senha) throws SenhaInvalidaException{
+    private void validarCampoSenha(String senha) throws FormatoSenhaInvalidoException {
         if(senha==null || senha.isBlank()){
-            throw new SenhaInvalidaException("Campo de validação NULO");
+            throw new FormatoSenhaInvalidoException("Campo de validação NULO");
         }
     }
-    private void validarTamanhoSenha(String senha) throws SenhaInvalidaException{
+    private void validarTamanhoSenha(String senha) throws FormatoSenhaInvalidoException{
         if(senha.length()<8){
-            throw new SenhaInvalidaException("Tamanho inválido");
+            throw new FormatoSenhaInvalidoException("Tamanho inválido");
         }
     }
-    private void validarMaiusculaSenha(String senha) throws SenhaInvalidaException{
+    private void validarMaiusculaSenha(String senha) throws FormatoSenhaInvalidoException{
         boolean maiuscula = false;
         for(int i = 0; i<senha.length() ; i++){
             if(Character.isUpperCase(senha.charAt(i))){
@@ -41,10 +42,10 @@ public class Senha {
             }
         }
         if(!(maiuscula)){
-            throw new SenhaInvalidaException("Sem letras maiúsculas");
+            throw new FormatoSenhaInvalidoException("Sem letras maiúsculas");
         }
     }
-    private void validarMinsculaSenha(String senha) throws SenhaInvalidaException{
+    private void validarMinsculaSenha(String senha) throws FormatoSenhaInvalidoException{
         boolean minuscula = false;
         for(int i = 0; i<senha.length() ; i++){
             if(Character.isLowerCase(senha.charAt(i))){
@@ -52,10 +53,10 @@ public class Senha {
             }
         }
         if(!(minuscula)){
-            throw new SenhaInvalidaException("Sem letras minúsculas");
+            throw new FormatoSenhaInvalidoException("Sem letras minúsculas");
         }
     }
-    private void validarNumeroSenha(String senha) throws SenhaInvalidaException{
+    private void validarNumeroSenha(String senha) throws FormatoSenhaInvalidoException{
         boolean numero = false;
         for(int i = 0; i<senha.length() ; i++){
             if(Character.isDigit(senha.charAt(i))){
@@ -63,10 +64,10 @@ public class Senha {
             }
         }
         if(!(numero)){
-            throw new SenhaInvalidaException("Sem números");
+            throw new FormatoSenhaInvalidoException("Sem números");
         }
     }
-    private void validarCaracterEspecialSenha(String senha) throws SenhaInvalidaException{
+    private void validarCaracterEspecialSenha(String senha) throws FormatoSenhaInvalidoException{
         boolean especial = false;
         for(int i = 0; i<senha.length() ; i++){
             if(!(Character.isLetterOrDigit(senha.charAt(i))) && !(Character.isWhitespace(senha.charAt(i)))){
@@ -74,7 +75,7 @@ public class Senha {
             }
         }
         if(!(especial)){
-            throw new SenhaInvalidaException("Sem caracters especiais");
+            throw new FormatoSenhaInvalidoException("Sem caracteres especiais");
         }
     }
 

@@ -23,12 +23,12 @@ public class PedidoRepository implements Repository<Pedido,String> {
     private List<Pedido> pedidosCache;
 
     public PedidoRepository(){
-        inicialzarArquivo();
+        inicializarArquivo();
         pedidosCache = buscarTodos();
     }
 
     // Privado 00
-    private void inicialzarArquivo(){
+    private void inicializarArquivo(){
         try{
             File arquivo = new File(FILE_PATH);
             if(arquivo.getParentFile() != null){

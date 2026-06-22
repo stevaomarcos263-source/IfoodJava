@@ -6,12 +6,14 @@ public abstract class User{
 
     private String nome;
     private Email email;
+    private Senha senha;
     private String id;
 
     protected User(){}
-    public User(String nome,Email email){
+    public User(String nome,Email email,Senha senha){
         this.nome = nome;
         this.email = email;
+        this.senha = senha;
         id = UUID.randomUUID().toString();
     }
 
@@ -21,6 +23,9 @@ public abstract class User{
     }
     public Email getEmail(){
         return email;
+    }
+    public Senha getSenhaUser(){
+        return senha;
     }
     public String getId(){
         return id;

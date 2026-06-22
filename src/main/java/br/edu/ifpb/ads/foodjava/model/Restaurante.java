@@ -1,5 +1,12 @@
 package br.edu.ifpb.ads.foodjava.model;
 
+import br.edu.ifpb.ads.foodjava.exception.DocumentoInvalidoException;
+import br.edu.ifpb.ads.foodjava.util.ValidadorCNPJ;
+import br.edu.ifpb.ads.foodjava.util.ValidadorTelefone;
+
+import java.util.List;
+import java.util.ArrayList;
+import java.util.stream.*;
 
 public class Restaurante {
 
@@ -7,22 +14,29 @@ public class Restaurante {
     private String cnpj;
     private Endereco enderecoDoRestaurante;
     private Email emailDoRestaurante;
+    private Senha senha;
     private Gerente gerente;
     private String categoriaCulinaria;
     private String contatoDoRestaurante;
     private String logoDoRestaurante;
+    private List<ItemCardapio> cardapio;
 
     protected Restaurante(){}
     public Restaurante(String nomeDoRestaurante,
                        String cnpj,
                        String categoriaCulinaria, String contatoDoRestaurante,
-                       Gerente gerente, Endereco enderecoDoRestaurante,Email emailDoRestaurante,
-                       String logoDoRestaurante){
+                       Gerente gerente, Endereco enderecoDoRestaurante,Email emailDoRestaurante,Senha senha,
+                       String logoDoRestaurante) throws DocumentoInvalidoException {
+        if(ValidadorCNPJ.isCNPJ(cnpj)){
+            throw new DocumentoInvalidoException("Documento (CNPJ) inválido!");
+        }
+        cardapio = new ArrayList<>();
         this.nomeDoRestaurante = nomeDoRestaurante;
         this.cnpj = cnpj;
         this.categoriaCulinaria = categoriaCulinaria;
         this.contatoDoRestaurante = contatoDoRestaurante;
         this.enderecoDoRestaurante = enderecoDoRestaurante;
+        this.senha = senha;
         this.gerente = gerente;
         this.emailDoRestaurante = emailDoRestaurante;
         this.logoDoRestaurante = logoDoRestaurante;
@@ -47,12 +61,20 @@ public class Restaurante {
     public Email getEmailDoRestaurante(){
         return emailDoRestaurante;
     }
+    public Senha getSenha(){
+        return senha;
+    }
     public Gerente getGerente(){
         return gerente;
     }
     public String getLogoDoRestaurante(){
         return logoDoRestaurante;
     }
+    public List<ItemCardapio> getCardapio(){
+        return cardapio;
+    }
+
+
 
     // Stters ->
     public void setContatoDoRestaurante(String contatoDoRestaurante){

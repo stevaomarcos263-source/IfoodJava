@@ -1,0 +1,40 @@
+[
+  {
+    "type": "Cliente",
+    "contato": "(87) 991602912",
+    "endereco": {
+      "numeroDaCasa": 100,
+      "rua": "Av. Principal",
+      "bairro": "Centro",
+      "cidade": "56600-000"
+    },
+    "cpf": "123.456.789-00",
+    "nome": "Marcos",
+    "email": {
+      "endereco": "marcos@email.com"
+    },
+    "senha": {
+      "senha": "Marcos123_"
+    },
+    "id": "3eb5fbcc-3983-4e4b-b1cd-b8e9f031af4d"
+  },
+  {
+    "type": "Cliente",
+    "contato": "(87) 991602912",
+    "endereco": {
+      "numeroDaCasa": 100,
+      "rua": "Av. Principal",
+      "bairro": "Centro",
+      "cidade": "56600-000"
+    },
+    "cpf": "123.456.789-00",
+    "nome": "Sebastião",
+    "email": {
+      "endereco": "marcos@email.com"
+    },
+    "senha": {
+      "senha": "Marcos123_"
+    },
+    "id": "2215119a-4673-4e34-b781-5814a136a367"
+  }
+]
