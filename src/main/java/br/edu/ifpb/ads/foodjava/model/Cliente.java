@@ -12,16 +12,15 @@ public class Cliente extends User {
     private String cpf;
 
     protected Cliente(){}
-    public Cliente(String nome,Email email,Senha senha,String contato, Endereco endereco,String cpf) throws FormatoTelefoneException, DocumentoInvalidoException {
+    public Cliente(String nome,Email email,Senha senha,String contato, Endereco endereco,String cpf){
         super(nome,email,senha);
-
         if(!ValidadorTelefone.isTelefone(contato)){
             throw new FormatoTelefoneException("Formato de telefone inválido!");
         }
-        if(ValidadorCPF.isCPF(cpf)){
-            throw new DocumentoInvalidoException("Documento (CPF) inválido!");
+        if(!ValidadorCPF.isCPF(cpf)){
+            throw new DocumentoInvalidoException("CPF inválido");
         }
-        this.contato = contato;
+        setContato(contato);
         this.endereco = endereco;
         this.cpf = cpf;
     }
@@ -41,6 +40,7 @@ public class Cliente extends User {
     public Endereco getEndereco(){
         return endereco;
     }
+
     public String getCpf(){
         return cpf;
     }

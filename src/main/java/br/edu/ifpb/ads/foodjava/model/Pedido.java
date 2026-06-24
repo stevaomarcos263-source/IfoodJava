@@ -5,6 +5,8 @@ import java.util.UUID;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ArrayList;
+
+import br.edu.ifpb.ads.foodjava.exception.StatusInvalidoException;
 import br.edu.ifpb.ads.foodjava.model.enums.StatusPedido;
 
 public class Pedido {
@@ -66,9 +68,11 @@ public class Pedido {
         if(statusPedido == null){
             return;
         }
-        if(this.statusPedido.getPeso()+1==statusPedido.getPeso()) {
-            this.statusPedido = statusPedido;
+        if(this.statusPedido.getPeso()+1!=statusPedido.getPeso()) {
+            throw new StatusInvalidoException("Tentativa de alterar Status para sequência não permitida");
         }
+        this.statusPedido = statusPedido;
+
     }
 
 

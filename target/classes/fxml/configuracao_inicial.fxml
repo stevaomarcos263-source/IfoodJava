@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" spacing="15.0" prefWidth="450.0" prefHeight="550.0"
+      style="-fx-background-color: #FAFAFA; -fx-border-color: #E0E0E0; -fx-border-width: 1;"
+      xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="br.edu.ifpb.ads.foodjava.controller.TelaConfiguracaoController">
+
+    <padding>
+        <Insets bottom="30.0" left="40.0" right="40.0" top="30.0" />
+    </padding>
+
+    <Label text="Configuração Inicial" textFill="#D32F2F">
+        <font>
+            <Font name="System Bold" size="24.0" />
+        </font>
+    </Label>
+
+    <Label text="Detectamos que esta é a primeira execução do FoodJava. Configure o estabelecimento para continuar."
+           textFill="#757575" wrapText="true" alignment="CENTER" textAlignment="CENTER">
+        <font>
+            <Font size="13.0" />
+        </font>
+        <VBox.margin>
+            <Insets bottom="10.0" />
+        </VBox.margin>
+    </Label>
+
+    <VBox spacing="5.0" fillWidth="true">
+        <Label text="Nome do Restaurante:" textFill="#212121">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+        <TextField fx:id="txtNomeRestaurante" promptText="Ex: Pizzaria Forno de Lenha" prefHeight="35.0"
+                   style="-fx-background-radius: 5; -fx-border-radius: 5;" />
+    </VBox>
+
+    <VBox spacing="5.0" fillWidth="true">
+        <Label text="CNPJ do Estabelecimento:" textFill="#212121">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+        <TextField fx:id="txtCnpj" promptText="00.000.000/0000-00" prefHeight="35.0"
+                   style="-fx-background-radius: 5; -fx-border-radius: 5;" />
+    </VBox>
+
+    <VBox spacing="5.0" fillWidth="true">
+        <Label text="Criar Senha do Gerente (Painel Admin):" textFill="#212121">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+        <PasswordField fx:id="txtSenhaGerente" promptText="Digite uma senha segura" prefHeight="35.0"
+                       style="-fx-background-radius: 5; -fx-border-radius: 5;" />
+    </VBox>
+
+    <Label fx:id="lblMensagemErro" textFill="#D32F2F" wrapText="true" alignment="CENTER" prefHeight="40.0" textAlignment="CENTER">
+        <font>
+            <Font size="12.0" />
+        </font>
+    </Label>
+
+    <Button fx:id="btnSalvar" text="Salvar e Concluir Configuração" onAction="#handleSalvarConfiguracao" maxWidth="Infinity" prefHeight="40.0"
+            style="-fx-background-color: #388E3C; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-cursor: hand;" />
+</VBox>

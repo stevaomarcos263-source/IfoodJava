@@ -1,6 +1,6 @@
 package br.edu.ifpb.ads.foodjava.exception;
 
-public class ItemVinculadoException extends Exception {
+public class ItemVinculadoException extends RuntimeException {
 
     public ItemVinculadoException(String mensagem){
         super(mensagem);

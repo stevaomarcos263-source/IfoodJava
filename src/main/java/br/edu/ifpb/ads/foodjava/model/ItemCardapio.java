@@ -14,10 +14,8 @@ public class ItemCardapio {
 
     protected ItemCardapio(){}
     public ItemCardapio(String nome, String descricao, double preco, CategoriaComida categoriaComida,
-                        boolean disponivel, String imagemPath) throws PrecoInvalidoException {
-
-        controlePreco(preco);
-
+                        boolean disponivel, String imagemPath) {
+        setPreco(preco);
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
@@ -59,9 +57,4 @@ public class ItemCardapio {
         this.preco = preco;
     }
 
-    private static void controlePreco(double preco)throws PrecoInvalidoException{
-        if(preco<=0){
-            throw new PrecoInvalidoException("Preço menor ou igual a zero, valor não permitido!");
-        }
-    }
 }

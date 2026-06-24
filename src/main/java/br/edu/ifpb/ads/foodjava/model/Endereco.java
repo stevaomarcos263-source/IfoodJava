@@ -14,11 +14,12 @@ public class Endereco {
         setRua(rua);
         setBairro(bairro);
         setCidade(cidade);
+        setCep(cep);
     }
 
     // Stters ->
     public void setNumeroDaCasa(int numeroDaCasa){
-        if(numeroDaCasa<0){
+        if(numeroDaCasa<=0){
             throw new IllegalArgumentException("Número da casa inválido!");
         }
         this.numeroDaCasa = numeroDaCasa;

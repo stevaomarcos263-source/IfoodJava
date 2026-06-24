@@ -2,7 +2,7 @@ package br.edu.ifpb.ads.foodjava.util;
 
 public class ValidadorCNPJ {
 
-    public static boolean isCNPJ(String cnpj){
+    public static boolean isCNPJ(String cnpj) {
 
         String CNPJ = "";
         int somaValidacaoUm = 0;

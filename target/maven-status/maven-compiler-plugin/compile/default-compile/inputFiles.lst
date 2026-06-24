@@ -1,7 +1,10 @@
 /home/marcosos/IdeaProjects/POO.2026.1-main/src/main/java/br/edu/ifpb/ads/foodjava/MainApp.java
 /home/marcosos/IdeaProjects/POO.2026.1-main/src/main/java/br/edu/ifpb/ads/foodjava/controller/LoginController.java
+/home/marcosos/IdeaProjects/POO.2026.1-main/src/main/java/br/edu/ifpb/ads/foodjava/controller/PedidoController.java
+/home/marcosos/IdeaProjects/POO.2026.1-main/src/main/java/br/edu/ifpb/ads/foodjava/controller/RestauranteController.java
 /home/marcosos/IdeaProjects/POO.2026.1-main/src/main/java/br/edu/ifpb/ads/foodjava/exception/ArquivoImportacaoException.java
 /home/marcosos/IdeaProjects/POO.2026.1-main/src/main/java/br/edu/ifpb/ads/foodjava/exception/CancelamentoNaoPermitidoException.java
+/home/marcosos/IdeaProjects/POO.2026.1-main/src/main/java/br/edu/ifpb/ads/foodjava/exception/CarrinhoVazioException.java
 /home/marcosos/IdeaProjects/POO.2026.1-main/src/main/java/br/edu/ifpb/ads/foodjava/exception/DocumentoInvalidoException.java
 /home/marcosos/IdeaProjects/POO.2026.1-main/src/main/java/br/edu/ifpb/ads/foodjava/exception/EmailInvalidoException.java
 /home/marcosos/IdeaProjects/POO.2026.1-main/src/main/java/br/edu/ifpb/ads/foodjava/exception/FormatoEmailInvalidoException.java
@@ -25,6 +28,7 @@
 /home/marcosos/IdeaProjects/POO.2026.1-main/src/main/java/br/edu/ifpb/ads/foodjava/model/User.java
 /home/marcosos/IdeaProjects/POO.2026.1-main/src/main/java/br/edu/ifpb/ads/foodjava/model/enums/CategoriaComida.java
 /home/marcosos/IdeaProjects/POO.2026.1-main/src/main/java/br/edu/ifpb/ads/foodjava/model/enums/StatusPedido.java
+/home/marcosos/IdeaProjects/POO.2026.1-main/src/main/java/br/edu/ifpb/ads/foodjava/repository/CardapioRepository.java
 /home/marcosos/IdeaProjects/POO.2026.1-main/src/main/java/br/edu/ifpb/ads/foodjava/repository/LoginRepository.java
 /home/marcosos/IdeaProjects/POO.2026.1-main/src/main/java/br/edu/ifpb/ads/foodjava/repository/PedidoRepository.java
 /home/marcosos/IdeaProjects/POO.2026.1-main/src/main/java/br/edu/ifpb/ads/foodjava/repository/Repository.java
@@ -32,3 +36,5 @@
 /home/marcosos/IdeaProjects/POO.2026.1-main/src/main/java/br/edu/ifpb/ads/foodjava/util/ValidadorCNPJ.java
 /home/marcosos/IdeaProjects/POO.2026.1-main/src/main/java/br/edu/ifpb/ads/foodjava/util/ValidadorCPF.java
 /home/marcosos/IdeaProjects/POO.2026.1-main/src/main/java/br/edu/ifpb/ads/foodjava/util/ValidadorTelefone.java
+/home/marcosos/IdeaProjects/POO.2026.1-main/src/main/java/br/edu/ifpb/ads/foodjava/view/TelaCadastrarCliente.java
+/home/marcosos/IdeaProjects/POO.2026.1-main/src/main/java/br/edu/ifpb/ads/foodjava/view/TelaLogin.java

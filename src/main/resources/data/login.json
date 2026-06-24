@@ -188,5 +188,25 @@
       "senha": "senhaSegura30*"
     },
     "id": "9efcb73e-9172-4e13-bff8-7a0a28d00521"
+  },
+  {
+    "type": "Cliente",
+    "contato": "87991238782",
+    "endereco": {
+      "numeroDaCasa": 55,
+      "rua": "wda",
+      "bairro": "wdawda",
+      "cep": "wdawd",
+      "cidade": "adwdw"
+    },
+    "cpf": "922.650.360-56",
+    "nome": "Julio Pereba ",
+    "email": {
+      "endereco": "Tocar@gmail.com"
+    },
+    "senha": {
+      "senha": "marD5%MMMMmmmm"
+    },
+    "id": "15a795f3-e60c-4f2b-957d-0413f0542b60"
   }
 ]

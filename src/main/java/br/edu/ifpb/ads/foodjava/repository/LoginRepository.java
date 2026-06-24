@@ -1,5 +1,6 @@
 package br.edu.ifpb.ads.foodjava.repository;
 
+import br.edu.ifpb.ads.foodjava.exception.FormatoTelefoneException;
 import br.edu.ifpb.ads.foodjava.model.User;
 import br.edu.ifpb.ads.foodjava.model.Cliente;
 import br.edu.ifpb.ads.foodjava.model.Gerente;
@@ -48,7 +49,7 @@ public class LoginRepository implements Repository<User,String > {
         }
     }
 
-    private void salvarUsuarioNoLogin(List<User> usuarios){
+    private void salvarUsuarioNoLogin(List<User> usuarios) {
         try(FileWriter writer = new FileWriter(FILE_PATH)){
             Type tipoDoObjeto = TypeToken.getParameterized(List.class, User.class).getType();
             gson.toJson(usuarios,tipoDoObjeto,writer);

@@ -5,22 +5,11 @@ import br.edu.ifpb.ads.foodjava.model.Email;
 import br.edu.ifpb.ads.foodjava.model.Senha;
 import br.edu.ifpb.ads.foodjava.model.User;
 import br.edu.ifpb.ads.foodjava.model.Cliente;
-import br.edu.ifpb.ads.foodjava.model.Gerente;
 import br.edu.ifpb.ads.foodjava.model.Endereco;
 
 import br.edu.ifpb.ads.foodjava.repository.LoginRepository;
 
 public class LoginController {
-
-    String nomeSimulado = "Marcos";
-    String cpfSimulado = "123.456.789-00";
-    String senhaSimulada = "Marcos123_";
-    String emailSimulado = "marcos@email.com";
-    String contatoSimulado = "(87) 991602912";
-
-    String ruaSimulada = "Av. Principal";
-    int numeroSimulado = 100;
-    String bairroSimulado = "Centro";
 
     private final LoginRepository loginRepository;
 
@@ -28,7 +17,7 @@ public class LoginController {
         loginRepository = new LoginRepository();
     }
 
-    public User autenticar(String email, String senha) throws EmailInvalidoException,SenhaInvalidaException {
+    public User autenticar(String email, String senha) {
 
         User usuarioEncontrado = loginRepository.buscarTodos().stream().filter(user -> user.getEmail().getEndereco().equalsIgnoreCase(email)).findFirst().orElseThrow(() -> new EmailInvalidoException("E-mail não encontrado"));
 
@@ -38,24 +27,19 @@ public class LoginController {
         return usuarioEncontrado;
     }
 
-    public void cadastrarCliente(){
+    public void cadastrarCliente(String nome, Email email, Senha senha, String contato, Endereco endereco, String cpf){
 
-        try{
-            User novoCliente = new Cliente("Sebastião", new Email(emailSimulado), new Senha(senhaSimulada),contatoSimulado, new Endereco(numeroSimulado,ruaSimulada,bairroSimulado,"Sertânia","56600-000"),cpfSimulado);
-            loginRepository.salvar(novoCliente);
-        }catch(FormatoEmailInvalidoException e){
-            System.err.println("Erro ao gerar endereço e-mail: "+e.getMessage());
-        }catch(FormatoSenhaInvalidoException e){
-            System.err.println("Erro ao gerar senha: "+e.getMessage());
-        }catch(FormatoTelefoneException e){
-            System.err.println("Erro no formato do telefone! "+e.getMessage());
+        if(loginRepository.buscarTodos().stream().filter(cliente -> cliente instanceof Cliente).anyMatch(cliente -> ((Cliente)cliente).getCpf().equals(cpf))){
+            throw new UsuarioDuplicadoException("Usuário \"cpf\" já cadastrado!");
         }
 
+
+        if(loginRepository.buscarTodos().stream().anyMatch(cliente -> cliente.getEmail().getEndereco().equalsIgnoreCase(email.getEndereco()))) {
+            throw new UsuarioDuplicadoException("E-mail já cadastrado");
+        }
+            Cliente novoCliente = new Cliente(nome, email, senha,contato, endereco,cpf);
+        loginRepository.salvar(novoCliente);
     }
-
-
-
-
 }
 
 

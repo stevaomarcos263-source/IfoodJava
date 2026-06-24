@@ -1,8 +1,10 @@
 package br.edu.ifpb.ads.foodjava.model;
 
 import br.edu.ifpb.ads.foodjava.exception.DocumentoInvalidoException;
+import br.edu.ifpb.ads.foodjava.exception.FormatoEmailInvalidoException;
+import br.edu.ifpb.ads.foodjava.exception.FormatoSenhaInvalidoException;
 import br.edu.ifpb.ads.foodjava.util.ValidadorCNPJ;
-import br.edu.ifpb.ads.foodjava.util.ValidadorTelefone;
+
 
 import java.util.List;
 import java.util.ArrayList;
@@ -26,7 +28,7 @@ public class Restaurante {
                        String cnpj,
                        String categoriaCulinaria, String contatoDoRestaurante,
                        Gerente gerente, Endereco enderecoDoRestaurante,Email emailDoRestaurante,Senha senha,
-                       String logoDoRestaurante) throws DocumentoInvalidoException {
+                       String logoDoRestaurante) throws DocumentoInvalidoException, FormatoSenhaInvalidoException, FormatoEmailInvalidoException {
         if(ValidadorCNPJ.isCNPJ(cnpj)){
             throw new DocumentoInvalidoException("Documento (CNPJ) inválido!");
         }
@@ -36,9 +38,9 @@ public class Restaurante {
         this.categoriaCulinaria = categoriaCulinaria;
         this.contatoDoRestaurante = contatoDoRestaurante;
         this.enderecoDoRestaurante = enderecoDoRestaurante;
+        this.emailDoRestaurante = emailDoRestaurante;
         this.senha = senha;
         this.gerente = gerente;
-        this.emailDoRestaurante = emailDoRestaurante;
         this.logoDoRestaurante = logoDoRestaurante;
     }
 
@@ -95,6 +97,16 @@ public class Restaurante {
     public void setNomeDoGerente(String nomeDoGerente){
         gerente.setNome(nomeDoGerente);
     }
+    public void setCardapio(List<ItemCardapio> cardapio){
+        this.cardapio = cardapio;
+    }
+    public void setCnpj(String cnpj)throws DocumentoInvalidoException{
+        if(!ValidadorCNPJ.isCNPJ(cnpj)){
+            throw new DocumentoInvalidoException("Documento inválido!");
+        }
+        this.cnpj = cnpj;
+    }
+
 
     public static Restaurante retornarRestauranteVazio(){
         return new Restaurante();
