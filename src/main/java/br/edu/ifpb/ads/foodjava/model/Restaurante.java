@@ -1,13 +1,9 @@
 package br.edu.ifpb.ads.foodjava.model;
 
 import br.edu.ifpb.ads.foodjava.exception.DocumentoInvalidoException;
-import br.edu.ifpb.ads.foodjava.exception.FormatoEmailInvalidoException;
-import br.edu.ifpb.ads.foodjava.exception.FormatoSenhaInvalidoException;
 import br.edu.ifpb.ads.foodjava.util.ValidadorCNPJ;
+import br.edu.ifpb.ads.foodjava.util.ValidadorTelefone;
 
-
-import java.util.List;
-import java.util.ArrayList;
 import java.util.stream.*;
 
 public class Restaurante {
@@ -21,22 +17,40 @@ public class Restaurante {
     private String categoriaCulinaria;
     private String contatoDoRestaurante;
     private String logoDoRestaurante;
-    private List<ItemCardapio> cardapio;
+    //private List<ItemCardapio> cardapio;
+    private Cardapio cardapio;
 
-    protected Restaurante(){}
+    protected Restaurante(){
+        nomeDoRestaurante = "vazio";
+    }
+
+    /**
+     * @param nomeDoRestaurante;
+     * @param cnpj;
+     * @param categoriaCulinaria;
+     * @param contatoDoRestaurante;
+     * @param gerente;
+     * @param enderecoDoRestaurante;
+     * @param emailDoRestaurante;
+     * @param senha;
+     * @param logoDoRestaurante;
+     * @throws DocumentoInvalidoException;
+     */
     public Restaurante(String nomeDoRestaurante,
                        String cnpj,
                        String categoriaCulinaria, String contatoDoRestaurante,
                        Gerente gerente, Endereco enderecoDoRestaurante,Email emailDoRestaurante,Senha senha,
-                       String logoDoRestaurante) throws DocumentoInvalidoException, FormatoSenhaInvalidoException, FormatoEmailInvalidoException {
-        if(ValidadorCNPJ.isCNPJ(cnpj)){
-            throw new DocumentoInvalidoException("Documento (CNPJ) inválido!");
+                       String logoDoRestaurante){
+
+        if(nomeDoRestaurante == null || nomeDoRestaurante.isEmpty()){
+            throw new IllegalArgumentException("Nome do restaurante com campo vazio!");
         }
-        cardapio = new ArrayList<>();
-        this.nomeDoRestaurante = nomeDoRestaurante;
-        this.cnpj = cnpj;
+        //cardapio = new ArrayList<>();
+        cardapio = new Cardapio();
+        setNomeDoRestaurante(nomeDoRestaurante);
+        setCnpj(cnpj);
+        setContatoDoRestaurante(contatoDoRestaurante);
         this.categoriaCulinaria = categoriaCulinaria;
-        this.contatoDoRestaurante = contatoDoRestaurante;
         this.enderecoDoRestaurante = enderecoDoRestaurante;
         this.emailDoRestaurante = emailDoRestaurante;
         this.senha = senha;
@@ -72,7 +86,7 @@ public class Restaurante {
     public String getLogoDoRestaurante(){
         return logoDoRestaurante;
     }
-    public List<ItemCardapio> getCardapio(){
+    public Cardapio getCardapio(){
         return cardapio;
     }
 
@@ -80,6 +94,7 @@ public class Restaurante {
 
     // Stters ->
     public void setContatoDoRestaurante(String contatoDoRestaurante){
+        ValidadorTelefone.isTelefone(contatoDoRestaurante);
         this.contatoDoRestaurante = contatoDoRestaurante;
     }
     public void setLogoDoRestaurante(String logoDoRestaurante){
@@ -97,8 +112,16 @@ public class Restaurante {
     public void setNomeDoGerente(String nomeDoGerente){
         gerente.setNome(nomeDoGerente);
     }
-    public void setCardapio(List<ItemCardapio> cardapio){
+    public void setCardapio(Cardapio cardapio){
         this.cardapio = cardapio;
+    }
+
+    public void adicionarItemAoCardapio(ItemCardapio item) {
+        this.cardapio.adicionarItemEmCardapio(item);
+    }
+
+    public void removerItemDoCardapio(ItemCardapio item) {
+        this.cardapio.removerItemEmCardapio(item);
     }
     public void setCnpj(String cnpj)throws DocumentoInvalidoException{
         if(!ValidadorCNPJ.isCNPJ(cnpj)){

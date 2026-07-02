@@ -2,10 +2,10 @@ package br.edu.ifpb.ads.foodjava.model.enums;
 
 public enum CategoriaComida {
 
-    ENTRADA("Entrada"),
-    PRATO_PRINCIPAL("Prato principal"),
-    SOBREMESA("Sobremesa"),
-    BEBIDAS("Bebidas");
+    ENTRADA("ENTRADA"),
+    PRATO_PRINCIPAL("PRATO_PRINCIPAL"),
+    SOBREMESA("SOBREMESA"),
+    BEBIDA("BEBIDA");
 
     private final String categoria;
     CategoriaComida(String categoria){

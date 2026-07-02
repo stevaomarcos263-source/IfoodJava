@@ -5,14 +5,14 @@ import br.edu.ifpb.ads.foodjava.exception.*;
 import br.edu.ifpb.ads.foodjava.model.Email;
 import br.edu.ifpb.ads.foodjava.model.Endereco;
 import br.edu.ifpb.ads.foodjava.model.Senha;
+import br.edu.ifpb.ads.foodjava.util.UsuarioLogadoNoSistema;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
+
 import javafx.stage.Stage;
 
 public class TelaCadastrarCliente {
@@ -151,60 +151,47 @@ public class TelaCadastrarCliente {
                     numeroDigitado = Integer.parseInt(txtNumeroDaResidencia.getText());
                 }
 
-                    loginController.cadastrarCliente(nomeDigitado, new Email(emailDigitadoCadastro),
+                br.edu.ifpb.ads.foodjava.model.Cliente clienteCadastrado = new br.edu.ifpb.ads.foodjava.model.Cliente(nomeDigitado,new Email(emailDigitadoCadastro),
+                        new Senha(senhaDigitadaCadastro), contatoDigitado,
+                        new Endereco(numeroDigitado,ruaDigitada,bairroDigitado,cepDigitado,cidadeDigitada),cpfDigitado);
+
+                    loginController.salvarNovoUsuarioNoArquivoLoginJson(nomeDigitado, new Email(emailDigitadoCadastro),
                             new Senha(senhaDigitadaCadastro), contatoDigitado,
                             new Endereco(numeroDigitado, ruaDigitada, bairroDigitado, cepDigitado, cidadeDigitada), cpfDigitado);
+
+                UsuarioLogadoNoSistema.setUsuarioLogado(clienteCadastrado);
+
+                Stage stageAtual =
+                        (Stage) btnSalvarLogin.getScene().getWindow();
+                TelaPrincipalCliente telaCliente =
+                        new TelaPrincipalCliente();
+                Scene cenaCliente =
+                        new Scene(telaCliente.getLayout(), 1200, 700);
+                stageAtual.setScene(cenaCliente);
 
                 System.out.println("Cadastro realizado para o cliente: " + nomeDigitado);
 
             } catch (NumberFormatException e) {
-                Alert numeroInvalido = new Alert(Alert.AlertType.ERROR);
-                numeroInvalido.setTitle("Erro -> N° residência");
-                numeroInvalido.setHeaderText("espaço deve conter apenas dígitos!");
-                numeroInvalido.setContentText(e.getMessage());
-                numeroInvalido.showAndWait();
+                exibirAlertaInformativo("Número da residência","Deve conter apenas dígitos!",e.getMessage());
                 System.err.println("Erro: O número da residência deve conter apenas dígitos numéricos.");
             } catch (FormatoSenhaInvalidoException e){
-                Alert alertaSenha = new Alert(Alert.AlertType.ERROR);
-                alertaSenha.setTitle("Senha fraca");
-                alertaSenha.setHeaderText("Sua senha não possui todos os requisitos necessários");
-                alertaSenha.setContentText(e.getMessage());
-                alertaSenha.showAndWait();
+                exibirAlertaInformativo("Senha","Senha fraca",e.getMessage());
                 System.err.println("Formato de senha inválido: "+e.getMessage());
             } catch(FormatoEmailInvalidoException e){
-                Alert formatoEmail = new Alert(Alert.AlertType.ERROR);
-                formatoEmail.setTitle("E-mail inválido");
-                formatoEmail.setHeaderText("Erro ao tentar cadasstrar e-mail");
-                formatoEmail.setContentText(e.getMessage());
-                formatoEmail.showAndWait();
+                exibirAlertaInformativo("E-mail inválido","Verifique o formato de seu e-mail!",e.getMessage());
                 System.err.println("Formato de e-mail inválido: "+e.getMessage());
             }catch(FormatoTelefoneException e){
-                Alert foramtoTelefone = new Alert(Alert.AlertType.ERROR);
-                foramtoTelefone.setTitle("Formato de telefone inválido");
-                foramtoTelefone.setHeaderText("Siga o padrão informado no campo \"contato\"");
-                foramtoTelefone.setContentText(e.getMessage());
-                foramtoTelefone.showAndWait();
+                exibirAlertaInformativo("Formato de Telefone error","Formato de telefone inválido...",e.getMessage());
                 System.err.println("Formato de telefone inválido: "+e.getMessage());
             }catch(DocumentoInvalidoException e){
-                Alert documento = new Alert(Alert.AlertType.ERROR);
-                documento.setTitle("CPF inválido");
-                documento.setHeaderText("Verifique se seu cpf está correto...");
-                documento.setContentText(e.getMessage());
-                documento.showAndWait();
+                exibirAlertaInformativo("CPF","Verifique se seu CPF está correto",e.getMessage());
                 System.err.println("Erro no documento CPF: "+e.getMessage());
             }catch(UsuarioDuplicadoException e){
-                Alert usuarioDuplicado = new Alert(Alert.AlertType.ERROR);
-                usuarioDuplicado.setTitle("CPF cadastrado");
-                usuarioDuplicado.setHeaderText("Verifique se seu CPF está correto...");
-                usuarioDuplicado.setContentText(e.getMessage());
-                usuarioDuplicado.showAndWait();
+                exibirAlertaInformativo("E-mail error","E-mail já cadastrado",e.getMessage());
                 System.err.println("Erro ao cadastrar e-mail: "+e.getMessage());
             }catch(IllegalArgumentException e){
                 Alert usuarioDuplicado = new Alert(Alert.AlertType.ERROR);
-                usuarioDuplicado.setTitle("Campo vazio");
-                usuarioDuplicado.setHeaderText("Verifique se todos os campos foram preenchidos");
-                usuarioDuplicado.setContentText(e.getMessage());
-                usuarioDuplicado.showAndWait();
+                exibirAlertaInformativo("Campo vazio","Verifique se todos os campos foram preenchidos!",e.getMessage());
                 System.err.println("Erro em campo vazio: "+e.getMessage());
             }
         });
@@ -220,9 +207,25 @@ public class TelaCadastrarCliente {
             stageAtual.setScene(cenaLogin);
         });
     }
-
-    // Método para expor o painel montado para a sua classe MainApp
     public VBox getLayout() {
         return this.telaCadastroPrincipal;
+    }
+
+
+    private void exibirAlertaInformativo(
+            String titulo,
+            String cabecalho,
+            String mensagem
+    ){
+        Alert alerta =
+                new Alert(
+                        Alert.AlertType.INFORMATION
+                );
+
+        alerta.setTitle(titulo);
+        alerta.setHeaderText(cabecalho);
+        alerta.setContentText(mensagem);
+
+        alerta.showAndWait();
     }
 }

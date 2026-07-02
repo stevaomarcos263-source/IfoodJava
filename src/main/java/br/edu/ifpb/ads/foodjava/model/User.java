@@ -10,6 +10,13 @@ public abstract class User{
     private String id;
 
     protected User(){}
+
+    /**
+     * @param nome;
+     * @param email;
+     * @param senha;
+     * @throws IllegalArgumentException;
+     */
     public User(String nome,Email email,Senha senha) {
         validacaoNome(nome);
         validacaoSenha(senha);

@@ -1,39 +1,54 @@
 package br.edu.ifpb.ads.foodjava;
 
-import br.edu.ifpb.ads.foodjava.view.TelaLogin; // Único import adicionado para enxergar sua tela
+import br.edu.ifpb.ads.foodjava.controller.RestauranteController; // Trocado para o Controller!
+import br.edu.ifpb.ads.foodjava.util.UsuarioLogadoNoSistema;
+import br.edu.ifpb.ads.foodjava.view.TelaCadastrarRestaurante;
+import br.edu.ifpb.ads.foodjava.view.TelaLogin;
+import br.edu.ifpb.ads.foodjava.util.UsuarioLogadoNoSistema;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-
-
 /**
  * Ponto de entrada da aplicação FoodJava.
- *
- * Esta classe deve ser mantida mínima — ela apenas inicializa o JavaFX
- * e carrega a primeira tela. Toda a lógica de negócio deve ficar nos
- * pacotes model, controller e repository.
- *
- * DICA: para carregar uma tela FXML, substitua o conteúdo de start() por:
- *
- * FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
- * Parent root = loader.load();
- * stage.setScene(new Scene(root, 900, 600));
- * stage.show();
  */
 public class MainApp extends Application {
 
+    // CORREÇÃO: Agora quem dita as regras é a Controller do Restaurante
+    private RestauranteController restauranteController = new RestauranteController();
+
     @Override
     public void start(Stage stage) {
-        // 1. Instancia a sua classe de login customizada
-        TelaLogin loginView = new TelaLogin();
 
-        // 2. Cria a Scene passando o layout encapsulado do seu VBox (telaLogin)
-        Scene cenaInicial = new Scene(loginView.getLayout(), 400, 500);
+        // 1. A decisão é tomada através do método da Controller
+        if (restauranteController.obterRestaurante().getNomeDoRestaurante().equalsIgnoreCase("vazio")) {
 
-        // 3. Inicializa o seu Stage principal com as configurações necessárias
-        stage.setTitle("FoodJava - Login");
-        stage.setScene(cenaInicial);
+            // Se NÃO EXISTIR restaurante, força a abertura da tela de cadastro de primeira
+            TelaCadastrarRestaurante cadastrarRestauranteView = new TelaCadastrarRestaurante();
+            Scene cenaCadastro = new Scene(cadastrarRestauranteView.getLayout(), 500, 650);
+
+            stage.setTitle("FoodJava - Primeiro Acesso (Cadastrar Restaurante)");
+            stage.setScene(cenaCadastro);
+
+        } else {
+
+            // Se JÁ EXISTIR um restaurante cadastrado, o sistema abre no Login
+            TelaLogin loginView = new TelaLogin();
+            Scene cenaLogin = new Scene(loginView.getLayout(), 400, 500);
+
+            stage.setTitle("FoodJava - Login");
+            stage.setScene(cenaLogin);
+        }
+
+        // ======================================================================
+        // GATILHO ADICIONADO: Executa sempre que o usuário clicar no "X" para fechar
+        // ======================================================================
+        stage.setOnCloseRequest(event -> {
+            System.out.println("Janela fechada pelo usuário. Limpando dados do UsuarioLogadoNoSistema...");
+            UsuarioLogadoNoSistema.esquecerUsuario();
+        });
+
+        // Exibe a janela escolhida pelo fluxo lógico
         stage.show();
     }
 

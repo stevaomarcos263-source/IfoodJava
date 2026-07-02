@@ -1,58 +1,60 @@
 package br.edu.ifpb.ads.foodjava.controller;
 
-import br.edu.ifpb.ads.foodjava.exception.CarrinhoVazioException;
 
+import br.edu.ifpb.ads.foodjava.exception.ItemVinculadoException;
+import br.edu.ifpb.ads.foodjava.exception.StatusInvalidoException;
+import br.edu.ifpb.ads.foodjava.model.ItemCardapio;
 import br.edu.ifpb.ads.foodjava.model.PedidoPreMoldado;
 
+import br.edu.ifpb.ads.foodjava.model.Carrinho;
 import br.edu.ifpb.ads.foodjava.model.Pedido;
+
 import br.edu.ifpb.ads.foodjava.model.enums.StatusPedido;
+import br.edu.ifpb.ads.foodjava.repository.CardapioRepository;
 import br.edu.ifpb.ads.foodjava.repository.PedidoRepository;
+import br.edu.ifpb.ads.foodjava.util.UsuarioLogadoNoSistema;
+
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class PedidoController {
 
     private final PedidoRepository pedidoRepository;
 
     public PedidoController() {
-        this.pedidoRepository = new PedidoRepository();
+        pedidoRepository = new PedidoRepository();
     }
 
-    public Pedido fecharPedido(String cpfDoCliente, List<PedidoPreMoldado> itensCarrinho) throws CarrinhoVazioException {
-        if (itensCarrinho == null || itensCarrinho.isEmpty()) {
-            throw new CarrinhoVazioException("O carrinho não pode estar vazio para fechar um pedido!");
+    private Pedido fecharPedido(String cpfDoCliente, List<PedidoPreMoldado> itensCarrinho) {
+        return pedidoRepository.fecharPedido(cpfDoCliente, itensCarrinho);
+    }
+
+    public void cadastrarNovoPedido(List<ItemCardapio> itensDoCarrinhoView) {
+        Carrinho carrinho = new Carrinho();
+        for (ItemCardapio item : itensDoCarrinhoView) {
+            carrinho.adicionarItem(item, 1);
         }
-        // Instancia o novo pedido (ajuste os parâmetros de acordo com o construtor da sua classe Pedido)
-        Pedido novoPedido = new Pedido(cpfDoCliente, itensCarrinho);
+        String cpfDoCliente = UsuarioLogadoNoSistema.getUsuarioLogado().getCpf();
+        fecharPedido(cpfDoCliente, carrinho.getItensDoCarrinho());
 
-        // Salva na persistência do arquivo JSON
-        pedidoRepository.salvar(novoPedido);
-        return novoPedido;
+    }
+
+    public List<Pedido> obterListaDeTodosOsPedidos() {
+        return pedidoRepository.buscarTodosOsPedidos();
+    }
+
+    public List<Pedido> buscarHistoricoDePedidosDoCliente(String cpfDoCliente) {
+        return pedidoRepository.filtroDePedidoComCpf(cpfDoCliente);
     }
 
 
-    public List<Pedido> buscarHistoricoDoCliente(String cpfDoCliente) {
-        return pedidoRepository.buscarTodos().stream()
-                .filter(pedido -> pedido.getCpfCliente().equals(cpfDoCliente))
-                .collect(Collectors.toList());
+    public void avancarStatusDoPedido(String idPedido){
+        pedidoRepository.avancarStatusDoPedidoRepository(idPedido);
+    }
+
+    public void cancelarPedido(Pedido pedido){
+        pedidoRepository.cancelarPedidoNoRepository(pedido.getId());
     }
 
 
-    public List<Pedido> buscarPedidosAtivosParaOGerente() {
-        return pedidoRepository.buscarTodos().stream()
-                .filter(pedido -> pedido.getStatusPedido().toString().equalsIgnoreCase("PENDENTE")
-                        || pedido.getStatusPedido().toString().equalsIgnoreCase("EM_PREPARO"))
-                .collect(Collectors.toList());
-    }
 
-
-    public void avancarStatusPedido(String cpfDoCliente, StatusPedido novoStatus) {
-        Pedido pedido = pedidoRepository.buscarPorId(cpfDoCliente);
-        if (pedido == null) {
-            throw new IllegalArgumentException("Pedido não encontrado no sistema.");
-        }
-
-        pedido.setStatusPedido(novoStatus);
-        pedidoRepository.atualizar(pedido);
-    }
 }

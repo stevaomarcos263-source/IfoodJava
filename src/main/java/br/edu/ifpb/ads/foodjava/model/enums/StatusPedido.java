@@ -6,6 +6,7 @@ SAIU_PARA_ENTREGA → ENTREGUE
 
 public enum StatusPedido {
 
+    CANCELADO("Cancelado",-1),
     AGUARDANDO_CONFIRMACAO("Aguardando confirmação...",1),
     CONFIRMADO("Pedido confirmado!",2),
     EM_PREPARO("Em preparo",3),
@@ -22,6 +23,9 @@ public enum StatusPedido {
 
     public int getPeso(){
         return peso;
+    }
+    public String getStatus(){
+        return status;
     }
     public String toString(){
         return status;

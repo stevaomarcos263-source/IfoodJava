@@ -7,39 +7,46 @@ import java.util.Collections;
 
 public class Carrinho {
 
-    private final List<PedidoPreMoldado> itens;
+    private final List<PedidoPreMoldado> itensDoCarrinho;
 
     public Carrinho(){
-        itens = new ArrayList<>();
+        itensDoCarrinho = new ArrayList<>();
     }
 
+    /**
+     * @param refeicao;
+     * @param quantidade;
+     */
     public void adicionarItem(ItemCardapio refeicao, int quantidade){
         if (refeicao == null || quantidade <=0 ){
             return;
         }
-        Optional<PedidoPreMoldado> seJaExiste = itens.stream().filter(x -> x.getItem().getNome().equalsIgnoreCase(refeicao.getNome())).findFirst();
+        Optional<PedidoPreMoldado> seJaExiste = itensDoCarrinho.stream().filter(x -> x.getItem().getNome().equalsIgnoreCase(refeicao.getNome())).findFirst();
         // isPresente retorna um "sim" ou "não". Caso seja encontrado no findFirst(), ele retorna o objeto procurado(SIM), caso contrário fica vazio e retorna ;
         if(seJaExiste.isPresent()){
             PedidoPreMoldado itemExistente = seJaExiste.get();
             itemExistente.setQtda(itemExistente.getQtda() + quantidade);
         }else{
-            itens.add(new PedidoPreMoldado(refeicao,quantidade));
+            itensDoCarrinho.add(new PedidoPreMoldado(refeicao,quantidade));
         }
     }
 
+    /**
+     * @param item;
+     */
     public void removerItem(PedidoPreMoldado item){
-        itens.remove(item);
+        itensDoCarrinho.remove(item);
     }
 
     public void limpar(){
-        itens.clear();
+        itensDoCarrinho.clear();
     }
 
     public double getValorTotal(){
-        return itens.stream().mapToDouble(PedidoPreMoldado::getSubTotal).sum();
+        return itensDoCarrinho.stream().mapToDouble(PedidoPreMoldado::getSubTotal).sum();
     }
 
-    public List<PedidoPreMoldado> getItens(){
-        return Collections.unmodifiableList(itens);
+    public List<PedidoPreMoldado> getItensDoCarrinho(){
+        return Collections.unmodifiableList(itensDoCarrinho);
     }
 }

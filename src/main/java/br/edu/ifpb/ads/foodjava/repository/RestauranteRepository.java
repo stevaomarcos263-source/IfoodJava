@@ -1,6 +1,9 @@
 package br.edu.ifpb.ads.foodjava.repository;
 
+import br.edu.ifpb.ads.foodjava.repository.LoginRepository;
 import br.edu.ifpb.ads.foodjava.model.Restaurante;
+import br.edu.ifpb.ads.foodjava.model.Gerente;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -11,6 +14,7 @@ import java.io.IOException;
 
 public class RestauranteRepository {
 
+    private LoginRepository loginRepository = new LoginRepository();
     private static final String FILE_PATH = "src/main/resources/data/restaurante.json";
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -18,17 +22,17 @@ public class RestauranteRepository {
 
     public RestauranteRepository(){
         inicializarArquivoRestaurante();
+
+    }
+    public Restaurante getRestaurante(){
+        return restaurante;
     }
 
-    public void atualizar(Restaurante restaurante){
-        this.restaurante = restaurante;
-        try(FileWriter writer = new FileWriter(FILE_PATH)){
-            gson.toJson(restaurante,writer);
-        }catch(IOException e){
-            System.err.println("Erro ao salvar modifcação no restaurante: "+e.getMessage());
-        }
+    public void salvarRestauranteNaRepository(Restaurante restaurante){
+        salvarRestaurante(restaurante);
     }
 
+//region Inicializadores privados
     private void inicializarArquivoRestaurante(){
         try{
             File arquivo = new File(FILE_PATH);
@@ -42,8 +46,15 @@ public class RestauranteRepository {
             }else{
                 try( FileReader reader = new FileReader(FILE_PATH)){
                     restaurante = gson.fromJson(reader,Restaurante.class);
+
+                    // garante que o restaurante exista ->
+                    if(restaurante==null){
+                        restaurante = Restaurante.retornarRestauranteVazio();
+                    }
                 }catch(IOException x){
+                    // em caso de erro ao ler restaurante,  ele gera um do mesmo jeito ->
                     System.err.println("erro ao ler Restaurante: "+x.getMessage());
+                    restaurante = Restaurante.retornarRestauranteVazio();
                 }
             }
         }catch(IOException e){
@@ -58,7 +69,7 @@ public class RestauranteRepository {
             System.err.println("Erro ao inicializar Restaurante: "+e.getMessage());
         }
     }
-    public Restaurante getRestaurante(){
-        return restaurante;
-    }
+
 }
+
+

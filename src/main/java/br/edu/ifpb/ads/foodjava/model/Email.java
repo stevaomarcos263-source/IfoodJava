@@ -7,6 +7,11 @@ public class Email{
     private String endereco;
 
     protected Email(){}
+
+    /**
+     * @param email;
+     * @throws FormatoEmailInvalidoException;
+     */
     public Email(String email) throws FormatoEmailInvalidoException {
         validarCampoDoEmail(email);
         validarArroba(email);

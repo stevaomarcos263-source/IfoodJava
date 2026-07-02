@@ -16,14 +16,14 @@ public class Pedido {
     private String id;  // ->
     private String cpfCliente;
     private String dataHora;  // ->
-    private List<PedidoPreMoldado> itens;
+    private List<PedidoPreMoldado> itensDoPedido;
     private double valorTotal; // ->
     private StatusPedido statusPedido; // ->
 
     protected Pedido(){}
     public Pedido(String cpfCliente, List<PedidoPreMoldado> itensPedido){
         this.cpfCliente = cpfCliente;
-        itens = new ArrayList<>(itensPedido);
+        itensDoPedido = new ArrayList<>(itensPedido);
         id = UUID.randomUUID().toString();
         dataHora = LocalDateTime.now().format(formatter);
         statusPedido = StatusPedido.AGUARDANDO_CONFIRMACAO;
@@ -39,11 +39,11 @@ public class Pedido {
                 "Status: %s%n"+
                 "Data/Hora: %s%n"+
                 "Pedidos: %s%n"+
-                "Valor total: %.2f%n",id,cpfCliente,statusPedido,dataHora,itens,getValorTotal());
+                "Valor total: %.2f%n",id,cpfCliente,statusPedido,dataHora,itensDoPedido,getValorTotal());
     }
     // Getters ->
-    public double calcularTotal(){
-        return this.itens.stream().mapToDouble(PedidoPreMoldado::getSubTotal).sum();
+    private double calcularTotal(){
+        return this.itensDoPedido.stream().mapToDouble(PedidoPreMoldado::getSubTotal).sum();
     }
     public double getValorTotal(){
         valorTotal=calcularTotal();
@@ -62,15 +62,13 @@ public class Pedido {
         return statusPedido;
     }
 
+    public List<PedidoPreMoldado> getListaPedidosPreMoldadosComItemEQuantidade(){
+        return itensDoPedido;
+    }
+
 
     // Stters ->
     public void setStatusPedido(StatusPedido statusPedido){
-        if(statusPedido == null){
-            return;
-        }
-        if(this.statusPedido.getPeso()+1!=statusPedido.getPeso()) {
-            throw new StatusInvalidoException("Tentativa de alterar Status para sequência não permitida");
-        }
         this.statusPedido = statusPedido;
 
     }

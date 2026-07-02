@@ -98,6 +98,21 @@
       "preco": 5.50,
       "categoria": "BEBIDAS",
       "disponivel": true
+    },
+    {
+      "nome": "Suco de maracujá",
+      "descricao": "Suco feito na empresa Sukita. Informe a preferência no campo de observações do pedido. 350ml.",
+      "preco": 4.50,
+      "categoria": "BEBIDAS",
+      "disponivel": true
+    },
+    {
+      "nome": "Suco de Framboesa",
+      "descricao": "Suco de framboesa fabricado em Sukita-SP/BR",
+      "preco": 24.5,
+      "categoria": "BEBIDA",
+      "disponivel": true,
+      "imagemPath": "exemplos-json/imagens/suco_umbu.jpg"
     }
   ]
 }

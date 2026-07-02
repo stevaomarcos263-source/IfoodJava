@@ -12,11 +12,20 @@ public class Cliente extends User {
     private String cpf;
 
     protected Cliente(){}
+
+    /**
+     * @param nome;
+     * @param email;
+     * @param senha;
+     * @param contato;
+     * @param endereco;
+     * @param cpf;
+     * @throws FormatoTelefoneException;
+     * @throws  DocumentoInvalidoException;
+     *
+     */
     public Cliente(String nome,Email email,Senha senha,String contato, Endereco endereco,String cpf){
         super(nome,email,senha);
-        if(!ValidadorTelefone.isTelefone(contato)){
-            throw new FormatoTelefoneException("Formato de telefone inválido!");
-        }
         if(!ValidadorCPF.isCPF(cpf)){
             throw new DocumentoInvalidoException("CPF inválido");
         }

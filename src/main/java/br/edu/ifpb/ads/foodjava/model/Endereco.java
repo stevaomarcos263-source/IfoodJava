@@ -9,6 +9,15 @@ public class Endereco {
     private String cidade;
 
     protected Endereco(){}
+
+    /**
+     * @param numeroDaCasa;
+     * @param rua;
+     * @param bairro;
+     * @param cep;
+     * @param cidade;
+     * @throws IllegalArgumentException;
+     */
     public Endereco(int numeroDaCasa, String rua, String bairro, String cep,String cidade ){
         setNumeroDaCasa(numeroDaCasa);
         setRua(rua);
@@ -67,6 +76,15 @@ public class Endereco {
         return cidade;
     }
 
+    /**
+     *
+     * @param numeroDaCasa;
+     * @param rua;
+     * @param bairro;
+     * @param cep;
+     * @param cidade;
+     * @throws IllegalArgumentException;
+     */
     public void atualizarEndereco(int numeroDaCasa, String rua, String bairro, String cep, String cidade){
         setNumeroDaCasa(numeroDaCasa);
         setRua(rua);

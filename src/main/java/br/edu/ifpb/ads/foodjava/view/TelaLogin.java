@@ -3,14 +3,18 @@ package br.edu.ifpb.ads.foodjava.view;
 import br.edu.ifpb.ads.foodjava.controller.LoginController;
 import br.edu.ifpb.ads.foodjava.exception.EmailInvalidoException;
 import br.edu.ifpb.ads.foodjava.exception.SenhaInvalidaException;
+import br.edu.ifpb.ads.foodjava.model.User;
+import br.edu.ifpb.ads.foodjava.model.Gerente;
+import br.edu.ifpb.ads.foodjava.model.Cliente;
+
+import br.edu.ifpb.ads.foodjava.util.UsuarioLogadoNoSistema;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
+
 import javafx.stage.Stage;
 
 public class TelaLogin {
@@ -68,17 +72,34 @@ public class TelaLogin {
 
         // botões e seus métodos ->
         btnLogin.setOnAction(event -> {
-            // CORREÇÃO AQUI: As variáveis precisam buscar o texto NO MOMENTO do clique
+
             String emailDigitado = txtEmail.getText();
             String senhaDigitada = passSenha.getText();
-
             try {
-                loginController.autenticar(emailDigitado, senhaDigitada);
-                System.out.println("Login efetuado com sucesso!");
 
-                // Aqui entraria a troca de cena para a tela principal pós-login, ex:
-                // Stage stageAtual = (Stage) btnLogin.getScene().getWindow();
-                // stageAtual.setScene(novaCena);
+                User usuario = loginController.autenticarEntradaDeUsuario(
+                        emailDigitado,
+                        senhaDigitada
+                );
+
+                Stage stageAtual = (Stage) btnLogin.getScene().getWindow();
+
+                if(usuario instanceof Gerente){
+
+                    TelaPainelGerente telaGerente = new TelaPainelGerente("FoodJava");
+                    Scene cena = new Scene(telaGerente.getLayout(), 1200, 700);
+
+                    stageAtual.setScene(cena);
+                }else if(usuario instanceof Cliente){
+
+
+                    UsuarioLogadoNoSistema.setUsuarioLogado((Cliente)usuario);
+                    TelaPrincipalCliente telaGerente = new TelaPrincipalCliente();
+                    Scene cena = new Scene(telaGerente.getLayout(), 1200, 700);
+                    Stage stageAtua = (Stage) btnCadastrar.getScene().getWindow();
+                    stageAtua.setScene(cena);
+
+                }
 
             } catch(EmailInvalidoException e) {
                 Alert alertaEmail = new Alert(Alert.AlertType.ERROR);

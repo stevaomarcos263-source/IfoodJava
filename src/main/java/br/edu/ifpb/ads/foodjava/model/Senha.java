@@ -7,6 +7,10 @@ public class Senha {
 
     private String senha;
 
+    /**
+     * @param senha;
+     * @throws FormatoSenhaInvalidoException;
+     */
     public Senha(String senha) throws FormatoSenhaInvalidoException {
         validarCampoSenha(senha);
         validarTamanhoSenha(senha);

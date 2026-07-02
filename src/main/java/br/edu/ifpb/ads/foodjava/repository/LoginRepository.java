@@ -1,9 +1,9 @@
 package br.edu.ifpb.ads.foodjava.repository;
 
-import br.edu.ifpb.ads.foodjava.exception.FormatoTelefoneException;
-import br.edu.ifpb.ads.foodjava.model.User;
-import br.edu.ifpb.ads.foodjava.model.Cliente;
-import br.edu.ifpb.ads.foodjava.model.Gerente;
+import br.edu.ifpb.ads.foodjava.exception.EmailInvalidoException;
+import br.edu.ifpb.ads.foodjava.exception.SenhaInvalidaException;
+import br.edu.ifpb.ads.foodjava.exception.UsuarioDuplicadoException;
+import br.edu.ifpb.ads.foodjava.model.*;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.Gson;
@@ -17,9 +17,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.*;
 
-public class LoginRepository implements Repository<User,String > {
+public class LoginRepository implements RepositoryLogin<User,String > {
 
     RuntimeTypeAdapterFactory<User> adaptacaoDeUsusrio = RuntimeTypeAdapterFactory.of(User.class,"type").
             registerSubtype(Cliente.class,"Cliente").
@@ -30,10 +29,14 @@ public class LoginRepository implements Repository<User,String > {
 
     private List<User> listaDeLogins;
 
+
+
     public LoginRepository(){
         inicializarArquivoLogin();
-        listaDeLogins = buscarTodos();
+        listaDeLogins = buscarTodosOsUsuarios();
     }
+
+    // Inicializa o arquivo com segurança devido o getParentFile().mkdirs() e o exists() -que confere se o arquivo existe ou não
     private void inicializarArquivoLogin(){
         try{
             File arquivo = new File(FILE_PATH);
@@ -42,7 +45,35 @@ public class LoginRepository implements Repository<User,String > {
             }
             if(!arquivo.exists()){
                 arquivo.createNewFile();
-                salvarUsuarioNoLogin( new ArrayList<>());
+                listaDeLogins = new ArrayList<>();
+                try(FileReader arquivoRestaurante = new FileReader("src/main/resources/data/restaurante.json")){
+                    Restaurante restauranteProvisorio = gson.fromJson(arquivoRestaurante, Restaurante.class);
+                    if (restauranteProvisorio != null && restauranteProvisorio.getGerente() != null) {
+                        listaDeLogins.add(restauranteProvisorio.getGerente());
+                    }
+                } catch(IOException e){
+                    System.err.println("Erro ao ler gerente do restaurante no arquivo novo: " + e.getMessage());
+                }
+                salvarUsuarioNoLogin(listaDeLogins);
+            }else{
+                try (FileReader reader = new FileReader(FILE_PATH)) {
+                    Type type = new TypeToken<ArrayList<User>>(){}.getType();
+                    listaDeLogins = gson.fromJson(reader, type);
+                    if(listaDeLogins==null || listaDeLogins.isEmpty()){
+                        listaDeLogins = new ArrayList<>();
+                        try(FileReader arquivoRestaurante = new FileReader("src/main/resources/data/restaurante.json")){
+                            Restaurante restauranteProvisorio = gson.fromJson(arquivoRestaurante,Restaurante.class);
+                            if(restauranteProvisorio != null && restauranteProvisorio.getGerente()!=null) {
+                                listaDeLogins.add(restauranteProvisorio.getGerente());
+                            }
+                            salvarUsuarioNoLogin(listaDeLogins);
+                        }catch(IOException e){
+                            System.err.println("Erro ao ler gerente do restaurante:"+e.getMessage());
+                        }
+                    }
+                } catch (IOException x) {
+                    System.err.println("Erro ao ler arquivo de login: " + x.getMessage());
+                }
             }
         }catch(IOException e){
             System.err.println("Erro ao inicializar arquivo -> login.json <- : "+e.getMessage());
@@ -58,19 +89,33 @@ public class LoginRepository implements Repository<User,String > {
         }
     }
 
+
+
+
+
+
+
+
+
+
+    public void salvarGerente(Gerente gerente){
+
+        listaDeLogins.add(gerente);
+        salvarUsuarioNoLogin(listaDeLogins);
+    }
     @Override
-    public void salvar(User usuario){
+    public void salvarNovoUsuarioNoArquivoLoginJson(User usuario){
         listaDeLogins.add(usuario);
         salvarUsuarioNoLogin(listaDeLogins);
     }
 
     @Override
-    public User buscarPorId(String id){
+    public User buscarUsuarioPorId(String id){
         return listaDeLogins.stream().filter(x -> x.getId().equals(id)).findFirst().orElse(null);
     }
 
     @Override
-    public List<User> buscarTodos(){
+    public List<User> buscarTodosOsUsuarios(){
         File arquivo = new File(FILE_PATH);
         if(!arquivo.exists()){
             return new ArrayList<>();
@@ -81,28 +126,47 @@ public class LoginRepository implements Repository<User,String > {
             List<User> lista = gson.fromJson(reader,tipoDoObjeto);
             return (lista != null)? lista : new ArrayList<>();
         }catch(IOException e){
-            System.err.println("Erro ao trabalhar com arquivo: "+e.getMessage());
+            System.err.println("Erro ao tentar importar lista de usuários do json para o sistema como objeto: "+e.getMessage());
             return new ArrayList<>();
         }
     }
 
-    @Override
-    public void atualizar(User usuarioAtualizado){
-        for(int i = 0; i<listaDeLogins.size() ; i++){
-            if(listaDeLogins.get(i).getId().equals(usuarioAtualizado.getId())){
-                listaDeLogins.set(i,usuarioAtualizado);
-                salvarUsuarioNoLogin(listaDeLogins);
-                return;
-            }
+    /**
+     * @param email;
+     * @param senha;
+     * @return {@link User};
+     */
+    // serve para autentica quem está tentando entrar e retorna o usuário, com isso posso por em tela "Bem-vindo <usuárioLogado>"
+    public User autenticarUsuarioTentandoEntrarEmSistema(String email, String senha) {
+
+        User usuarioEncontrado = buscarTodosOsUsuarios().stream().filter(user -> user.getEmail().getEndereco().equalsIgnoreCase(email)).findFirst().orElseThrow(() -> new EmailInvalidoException("E-mail não encontrado"));
+        if (!usuarioEncontrado.getSenhaUser().getSenha().equals(senha)) {
+            throw new SenhaInvalidaException("Senha incorreta!");
         }
+        return usuarioEncontrado;
     }
 
-    @Override
-    public void deletar(String id){
-        boolean removido = listaDeLogins.removeIf(x -> x.getId().equals(id));
-        if(removido){
-            salvarUsuarioNoLogin(listaDeLogins);
+    /**
+     * @param nome;
+     * @param email;
+     * @param senha;
+     * @param contato;
+     * @param endereco;
+     * @param cpf;
+     * @throws UsuarioDuplicadoException;
+     */
+    // cadastrar Cliente ->
+    public void cadastrarCliente(String nome, Email email, Senha senha, String contato, Endereco endereco, String cpf){
+
+        if(buscarTodosOsUsuarios().stream().filter(cliente -> cliente instanceof Cliente).anyMatch(cliente -> ((Cliente)cliente).getCpf().equals(cpf))){
+            throw new UsuarioDuplicadoException("Usuário \"cpf\" já cadastrado!");
         }
+        if(buscarTodosOsUsuarios().stream().anyMatch(cliente -> cliente.getEmail().getEndereco().equalsIgnoreCase(email.getEndereco()))) {
+            throw new UsuarioDuplicadoException("E-mail já cadastrado");
+        }
+
+        Cliente novoCliente = new Cliente(nome, email, senha,contato, endereco,cpf);
+        salvarNovoUsuarioNoArquivoLoginJson(novoCliente);
     }
 
 

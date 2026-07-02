@@ -1,192 +1,73 @@
 [
   {
-    "type": "Cliente",
-    "contato": "87991602912",
-    "endereco": {
-      "numeroDaCasa": 666,
-      "rua": "rua peba",
-      "bairro": "Jacinto",
-      "cidade": "Jueiro"
+    "type": "Gerente",
+    "nome": "Paulo",
+    "email": {
+      "endereco": "r@gmail.com"
     },
-    "cpf": "14915121488",
+    "senha": {
+      "senha": "Marcos320_"
+    },
+    "id": "df34dd86-0f40-41ce-91ea-49bd069b3214"
+  },
+  {
+    "type": "Cliente",
+    "contato": "87991602358",
+    "endereco": {
+      "numeroDaCasa": 27,
+      "rua": "Lacerda Ric",
+      "bairro": "Alpha Ville",
+      "cep": "45892667",
+      "cidade": "São Paulo"
+    },
+    "cpf": "878.882.730-50",
+    "nome": "Jose",
+    "email": {
+      "endereco": "jose@gmail.com"
+    },
+    "senha": {
+      "senha": "Jose2006-"
+    },
+    "id": "087e7791-bf41-4ba9-bc92-42cff8640dbc"
+  },
+  {
+    "type": "Cliente",
+    "contato": "87991602358",
+    "endereco": {
+      "numeroDaCasa": 788,
+      "rua": "Tabocas",
+      "bairro": "Crostalk",
+      "cep": "89945213",
+      "cidade": "Guanabara"
+    },
+    "cpf": "232.714.210-56",
+    "nome": "Thiago",
+    "email": {
+      "endereco": "t@gmail.com"
+    },
+    "senha": {
+      "senha": "Marcos320_"
+    },
+    "id": "7c15b5a5-875f-4fab-8acd-ae34520b79b9"
+  },
+  {
+    "type": "Cliente",
+    "contato": "87991602945",
+    "endereco": {
+      "numeroDaCasa": 77,
+      "rua": "Rua Lacerda Siqueira",
+      "bairro": "Mercedes Alpha",
+      "cep": "8469522",
+      "cidade": "Rio de Janerio"
+    },
+    "cpf": "776.798.950-07",
     "nome": "Marcos",
     "email": {
       "endereco": "marcos@gmail.com"
     },
     "senha": {
-      "senha": "marcosSuap25-"
+      "senha": "Marcos320_"
     },
-    "id": "398f68cf-d18d-44e8-ad26-28eeb20835a9"
-  },
-  {
-    "type": "Cliente",
-    "contato": "8799160912",
-    "endereco": {
-      "numeroDaCasa": 55,
-      "rua": "ranfja",
-      "bairro": "afdfa",
-      "cidade": "afadf"
-    },
-    "cpf": "14915121488",
-    "nome": "Igor",
-    "email": {
-      "endereco": "marcos2@gmail.com"
-    },
-    "senha": {
-      "senha": "Marco123_"
-    },
-    "id": "97e00f63-bae8-4fab-98c6-026f70cd184c"
-  },
-  {
-    "type": "Cliente",
-    "contato": "87991602913",
-    "endereco": {
-      "numeroDaCasa": 208,
-      "rua": "Joaquim Nambuco",
-      "bairro": "Ferro Veloho",
-      "cidade": "São Paulo"
-    },
-    "cpf": "14915121488",
-    "nome": "Marília",
-    "email": {
-      "endereco": "marilia@gmail.com"
-    },
-    "senha": {
-      "senha": "mariliaA2009_"
-    },
-    "id": "21a2e1bb-4898-4ce5-a9f2-1251cd32ba71"
-  },
-  {
-    "type": "Cliente",
-    "contato": "(87)991238782",
-    "endereco": {
-      "numeroDaCasa": 208,
-      "rua": "Joaquim Nambuco",
-      "bairro": "Ferro Veloho",
-      "cidade": "São Paulo"
-    },
-    "cpf": "14915121488",
-    "nome": "Igor",
-    "email": {
-      "endereco": "IgorMercedesBenz@gmail.com"
-    },
-    "senha": {
-      "senha": "mariliaA2009_"
-    },
-    "id": "a82f7e3f-5a7c-4c3b-b532-2efd9512ce78"
-  },
-  {
-    "type": "Cliente",
-    "contato": "87991602912",
-    "endereco": {
-      "numeroDaCasa": 666,
-      "rua": "Rua quinto",
-      "bairro": "dos",
-      "cidade": "inferno"
-    },
-    "cpf": "577.161.030-59",
-    "nome": "Marcos",
-    "email": {
-      "endereco": "marcos@gmail.com"
-    },
-    "senha": {
-      "senha": "marcosDaAlopra10_"
-    },
-    "id": "0422fce4-3102-45aa-8e3b-19a7fcb9a66d"
-  },
-  {
-    "type": "Cliente",
-    "contato": "87991602912",
-    "endereco": {
-      "numeroDaCasa": 666,
-      "rua": "Rua quinto",
-      "bairro": "dos",
-      "cidade": "inferno"
-    },
-    "cpf": "126.230.790-21",
-    "nome": "Santiago",
-    "email": {
-      "endereco": "marcos2@gmail.com"
-    },
-    "senha": {
-      "senha": "marcosDaAlopra10_"
-    },
-    "id": "e7221ea9-cdf5-4813-b9e1-801d68aac563"
-  },
-  {
-    "type": "Cliente",
-    "contato": "87991602912",
-    "endereco": {
-      "numeroDaCasa": 23,
-      "rua": "besta",
-      "bairro": "do",
-      "cidade": "carai"
-    },
-    "cpf": "579.650.880-61",
-    "nome": "Marcos",
-    "email": {
-      "endereco": "marcos2@gmail.com"
-    },
-    "senha": {
-      "senha": "sdaasJJ8*"
-    },
-    "id": "b5ab74a9-220a-44f9-acfb-b68d520059af"
-  },
-  {
-    "type": "Cliente",
-    "contato": "87991238782",
-    "endereco": {
-      "numeroDaCasa": 88,
-      "rua": "dasdad",
-      "bairro": "dsds",
-      "cidade": "sddd"
-    },
-    "cpf": "497.596.070-26",
-    "nome": "",
-    "email": {
-      "endereco": "marcos26@gmail.com"
-    },
-    "senha": {
-      "senha": "madsdasdK9("
-    },
-    "id": "84ebcd01-1bab-46f1-83ee-86c2d5598a21"
-  },
-  {
-    "type": "Cliente",
-    "contato": "87991238782",
-    "endereco": {
-      "numeroDaCasa": 99,
-      "rua": "Rua nambuco",
-      "bairro": "bairro",
-      "cidade": "pipoqueiro"
-    },
-    "cpf": "350.033.570-52",
-    "nome": "",
-    "email": {
-      "endereco": "Bento@gmail.com"
-    },
-    "senha": {
-      "senha": "ajfpaJJ8**"
-    },
-    "id": "d646875d-0dd6-442a-9895-9ed50a87a92d"
-  },
-  {
-    "type": "Cliente",
-    "contato": "87991602912",
-    "endereco": {
-      "numeroDaCasa": 0,
-      "rua": "dawd",
-      "bairro": "adawdwadwadwd",
-      "cidade": "wdawd"
-    },
-    "cpf": "410.047.520-91",
-    "nome": "Henrique",
-    "email": {
-      "endereco": "marquinho@gmail.com"
-    },
-    "senha": {
-      "senha": "senhaSegura30*"
-    },
-    "id": "9efcb73e-9172-4e13-bff8-7a0a28d00521"
+    "id": "b4766152-0d3e-4d94-a212-6c529be55e35"
   }
 ]
