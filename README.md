@@ -34,23 +34,6 @@ git clone https://github.com/stevaomarcos263-source/IfoodJava.git
 cd FoodJava
 ```
 
-### 2a. Executar pelo Terminal
-
-```bash
-mvn javafx:run
-```
-
-> Execute sempre a partir da **raiz do projeto** (onde está o `pom.xml`).
-
----
-```bash
-mvn javafx:run
-```
-
-Alternativamente, use o painel **Maven** na barra lateral → expanda o projeto → **Plugins → javafx → javafx:run** (duplo clique).
-
----
-
 ## 🗂️ Estrutura do Projeto
 
 ```
