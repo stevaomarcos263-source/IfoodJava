@@ -82,45 +82,6 @@ foodjava/
 └── README.md
 ```
 
-### `view/` vs `resources/fxml/` — qual a diferença?
-
-No JavaFX existem duas formas de criar uma tela:
-
-- **`resources/fxml/`** — arquivos `.fxml` editados visualmente no **SceneBuilder**. Definem o layout de forma declarativa (como HTML), separando completamente a estrutura visual do código Java. É a abordagem recomendada para a maioria das telas.
-
-- **`view/`** — classes Java que montam a tela via código (ex.: `new Button("Entrar")`). Útil para telas geradas dinamicamente, como listas e cards cujo conteúdo só é conhecido em runtime.
-
-Na prática, a maioria dos projetos usa os dois: SceneBuilder para telas fixas e classes Java para componentes dinâmicos.
-
----
-
-## 🎨 Criando Telas com SceneBuilder
-
-O **SceneBuilder** é uma ferramenta visual de arrastar e soltar para criar arquivos `.fxml`. Com ele você monta o layout da tela sem escrever código, e o JavaFX carrega o arquivo gerado em runtime.
-
-**Download:** https://gluonhq.com/products/scene-builder
-
-**Como usar no Eclipse:**
-1. Crie um arquivo `.fxml` em `src/main/resources/fxml/`
-2. Clique com o botão direito no arquivo → **Open with SceneBuilder**
-3. Monte a tela visualmente e salve
-4. No Controller correspondente, carregue com:
-
-```java
-FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/NomeDaTela.fxml"));
-Parent root = loader.load();
-```
-
----
-
-## 📁 Exemplo de Cardápio para Importação
-
-Um arquivo de exemplo está disponível em `exemplos-json/cardapio_exemplo.json`, com 13 itens cobrindo todas as categorias e com imagens de placeholder prontas para teste.
-
-Categorias válidas: `ENTRADA` · `PRATO_PRINCIPAL` · `SOBREMESA` · `BEBIDAS`
-
----
-
 ## 📄 Documentação Completa
 
 A descrição detalhada do projeto — requisitos funcionais, regras de negócio, exceções, arquitetura e critérios de avaliação — está disponível no PDF entregue pelo professor no Google Classroom.
