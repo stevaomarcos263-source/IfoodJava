@@ -10,10 +10,6 @@
 | Nome                          | Matrícula    |
 |-------------------------------|--------------|
 | José Marcos de Oliveira Silva | 202525020002 |
-| Integrante 2                  | 000000       |
-| Integrante 3                  | 000000       |
-
-> ✏️ Atualize esta tabela com os dados reais da equipe.
 
 ---
 
@@ -34,11 +30,9 @@
 ### 1. Clone o repositório
 
 ```bash
-git clone https://gitlab.com/alisson.werner.ifpb/POO.2026.1.git
-cd POO.2026.1
+git clone https://github.com/stevaomarcos263-source/IfoodJava.git
+cd FoodJava
 ```
-
----
 
 ### 2a. Executar pelo Terminal
 
@@ -49,27 +43,6 @@ mvn javafx:run
 > Execute sempre a partir da **raiz do projeto** (onde está o `pom.xml`).
 
 ---
-
-### 2b. Executar no Eclipse
-
-1. **File → Import → Maven → Existing Maven Projects** → selecione a pasta do projeto → **Finish**
-2. Aguarde o Eclipse baixar as dependências (barra de progresso no rodapé)
-3. Clique com o botão direito no projeto → **Run As → Maven Build...** (com reticências)
-4. No campo **Goals**, digite: `javafx:run`
-5. Clique em **Run**
-
-> Nas próximas execuções: botão direito no projeto → **Run As → Maven Build** (sem reticências).
-
----
-
-### 2c. Executar no VS Code
-
-1. Instale a extensão **Extension Pack for Java** (Microsoft)
-2. **File → Open Folder** → selecione a pasta do projeto
-3. Aguarde o VS Code indexar o projeto (barra de progresso no rodapé)
-4. Abra o terminal integrado: **Terminal → New Terminal**
-5. Execute:
-
 ```bash
 mvn javafx:run
 ```

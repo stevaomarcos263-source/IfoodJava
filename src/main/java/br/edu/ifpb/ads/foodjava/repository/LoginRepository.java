@@ -36,7 +36,7 @@ public class LoginRepository implements RepositoryLogin<User,String > {
         listaDeLogins = buscarTodosOsUsuarios();
     }
 
-    // Inicializa o arquivo com segurança devido o getParentFile().mkdirs() e o exists() -que confere se o arquivo existe ou não
+    // Inicializa o arquivo com segurança devido o getParentFile().mkdirs() e o exists() - que confere se o arquivo existe ou não
     private void inicializarArquivoLogin(){
         try{
             File arquivo = new File(FILE_PATH);
@@ -54,6 +54,7 @@ public class LoginRepository implements RepositoryLogin<User,String > {
                 } catch(IOException e){
                     System.err.println("Erro ao ler gerente do restaurante no arquivo novo: " + e.getMessage());
                 }
+                // Salvando gerente no login em caso que o arquivo login.json seja apagado, evitando que o programa fique travado!
                 salvarUsuarioNoLogin(listaDeLogins);
             }else{
                 try (FileReader reader = new FileReader(FILE_PATH)) {
@@ -88,15 +89,6 @@ public class LoginRepository implements RepositoryLogin<User,String > {
         System.err.println("Erro ao tentar salvar lista no ->login.json<- : "+e.getMessage());
         }
     }
-
-
-
-
-
-
-
-
-
 
     public void salvarGerente(Gerente gerente){
 
@@ -159,7 +151,7 @@ public class LoginRepository implements RepositoryLogin<User,String > {
     public void cadastrarCliente(String nome, Email email, Senha senha, String contato, Endereco endereco, String cpf){
 
         if(buscarTodosOsUsuarios().stream().filter(cliente -> cliente instanceof Cliente).anyMatch(cliente -> ((Cliente)cliente).getCpf().equals(cpf))){
-            throw new UsuarioDuplicadoException("Usuário \"cpf\" já cadastrado!");
+            throw new UsuarioDuplicadoException("Usuário com \"cpf\" já cadastrado!");
         }
         if(buscarTodosOsUsuarios().stream().anyMatch(cliente -> cliente.getEmail().getEndereco().equalsIgnoreCase(email.getEndereco()))) {
             throw new UsuarioDuplicadoException("E-mail já cadastrado");

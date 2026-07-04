@@ -1,149 +1,8 @@
 [
   {
-    "id": "292b87a2-70b3-4980-b7b0-c58e07763355",
-    "cpfCliente": "878.882.730-50",
-    "dataHora": "28/06/2026 12:55",
-    "itensDoPedido": [
-      {
-        "itemCardapio": {
-          "nome": "Suco de Framboesa",
-          "descricao": "Suco de framboesa fabricado em Sukita-SP/BR",
-          "preco": 24.5,
-          "categoria": "BEBIDA",
-          "disponivel": true,
-          "imagemPath": "exemplos-json/imagens/suco_umbu.jpg"
-        },
-        "qtda": 1,
-        "precoUnitario": 24.5
-      },
-      {
-        "itemCardapio": {
-          "nome": "Moqueca de Camarão",
-          "descricao": "Camarões frescos cozidos em leite de coco, azeite de dendê, tomate e coentro. Acompanha arroz e pirão.",
-          "preco": 62.0,
-          "categoria": "PRATO_PRINCIPAL",
-          "disponivel": true
-        },
-        "qtda": 1,
-        "precoUnitario": 62.0
-      },
-      {
-        "itemCardapio": {
-          "nome": "Pudim de Leite Condensado",
-          "descricao": "Pudim cremoso de leite condensado com calda de caramelo. Receita da vovó, feito no dia.",
-          "preco": 12.0,
-          "categoria": "SOBREMESA",
-          "disponivel": true,
-          "imagemPath": "exemplos-json/imagens/pudim.jpg"
-        },
-        "qtda": 1,
-        "precoUnitario": 12.0
-      }
-    ],
-    "valorTotal": 98.5,
-    "statusPedido": "ENTREGUE"
-  },
-  {
-    "id": "f3d60b76-85f6-4bf8-8312-0880ab8dc572",
-    "cpfCliente": "878.882.730-50",
-    "dataHora": "28/06/2026 12:55",
-    "itensDoPedido": [
-      {
-        "itemCardapio": {
-          "nome": "Mungunzá",
-          "descricao": "Sobremesa típica nordestina feita com milho branco, leite de coco, canela e açúcar. Servida fria.",
-          "preco": 10.0,
-          "categoria": "SOBREMESA",
-          "disponivel": true,
-          "imagemPath": "exemplos-json/imagens/munguzza.jpg"
-        },
-        "qtda": 1,
-        "precoUnitario": 10.0
-      }
-    ],
-    "valorTotal": 10.0,
-    "statusPedido": "ENTREGUE"
-  },
-  {
-    "id": "3f781e02-c16a-467a-be56-3d22265be405",
-    "cpfCliente": "232.714.210-56",
-    "dataHora": "28/06/2026 13:06",
-    "itensDoPedido": [
-      {
-        "itemCardapio": {
-          "nome": "Moqueca de Camarão",
-          "descricao": "Camarões frescos cozidos em leite de coco, azeite de dendê, tomate e coentro. Acompanha arroz e pirão.",
-          "preco": 62.0,
-          "categoria": "PRATO_PRINCIPAL",
-          "disponivel": true
-        },
-        "qtda": 2,
-        "precoUnitario": 62.0
-      },
-      {
-        "itemCardapio": {
-          "nome": "Suco de Framboesa",
-          "descricao": "Suco de framboesa fabricado em Sukita-SP/BR",
-          "preco": 24.5,
-          "categoria": "BEBIDA",
-          "disponivel": true,
-          "imagemPath": "exemplos-json/imagens/suco_umbu.jpg"
-        },
-        "qtda": 2,
-        "precoUnitario": 24.5
-      },
-      {
-        "itemCardapio": {
-          "nome": "Cartola",
-          "descricao": "Banana frita com queijo coalho derretido, polvilhada com açúcar e canela. Sobremesa pernambucana.",
-          "preco": 13.5,
-          "categoria": "SOBREMESA",
-          "disponivel": true
-        },
-        "qtda": 1,
-        "precoUnitario": 13.5
-      },
-      {
-        "itemCardapio": {
-          "nome": "Pudim de Leite Condensado",
-          "descricao": "Pudim cremoso de leite condensado com calda de caramelo. Receita da vovó, feito no dia.",
-          "preco": 12.0,
-          "categoria": "SOBREMESA",
-          "disponivel": true,
-          "imagemPath": "exemplos-json/imagens/pudim.jpg"
-        },
-        "qtda": 1,
-        "precoUnitario": 12.0
-      }
-    ],
-    "valorTotal": 198.5,
-    "statusPedido": "CONFIRMADO"
-  },
-  {
-    "id": "fed4f0a7-ee4f-495f-b2f1-5e7f5d7f4528",
-    "cpfCliente": "232.714.210-56",
-    "dataHora": "28/06/2026 13:10",
-    "itensDoPedido": [
-      {
-        "itemCardapio": {
-          "nome": "Baião de Dois",
-          "descricao": "Prato clássico nordestino com arroz, feijão-verde, queijo coalho, carne-seca desfiada e manteiga de garrafa.",
-          "preco": 38.9,
-          "categoria": "PRATO_PRINCIPAL",
-          "disponivel": true,
-          "imagemPath": "exemplos-json/imagens/baiao_de_dois.jpg"
-        },
-        "qtda": 1,
-        "precoUnitario": 38.9
-      }
-    ],
-    "valorTotal": 38.9,
-    "statusPedido": "CONFIRMADO"
-  },
-  {
-    "id": "b455b9d9-38b1-443c-89fd-f5b8c2da5d05",
-    "cpfCliente": "878.882.730-50",
-    "dataHora": "28/06/2026 15:34",
+    "id": "b7d7959d-b700-4f4b-a5c5-9f707114633f",
+    "cpfCliente": "14915121488",
+    "dataHora": "01/07/2026 22:42",
     "itensDoPedido": [
       {
         "itemCardapio": {
@@ -157,27 +16,6 @@
         "qtda": 2,
         "precoUnitario": 12.5
       },
-      {
-        "itemCardapio": {
-          "nome": "Macaxeira Frita",
-          "descricao": "Macaxeira cozida e frita na hora, crocante por fora e macia por dentro. Servida com manteiga de garrafa.",
-          "preco": 14.0,
-          "categoria": "ENTRADA",
-          "disponivel": true,
-          "imagemPath": "exemplos-json/imagens/macaxeira_frita.jpg"
-        },
-        "qtda": 1,
-        "precoUnitario": 14.0
-      }
-    ],
-    "valorTotal": 39.0,
-    "statusPedido": "ENTREGUE"
-  },
-  {
-    "id": "df9b30fa-3b41-4f85-b8a8-4cbb6e3f6b88",
-    "cpfCliente": "878.882.730-50",
-    "dataHora": "28/06/2026 15:34",
-    "itensDoPedido": [
       {
         "itemCardapio": {
           "nome": "Mungunzá",
@@ -191,58 +29,13 @@
         "precoUnitario": 10.0
       }
     ],
-    "valorTotal": 30.0,
+    "valorTotal": 55.0,
     "statusPedido": "ENTREGUE"
   },
   {
-    "id": "286ae239-0b9d-4c7f-9898-48e0f16279e3",
-    "cpfCliente": "878.882.730-50",
-    "dataHora": "28/06/2026 15:34",
-    "itensDoPedido": [
-      {
-        "itemCardapio": {
-          "nome": "Pudim de Leite Condensado",
-          "descricao": "Pudim cremoso de leite condensado com calda de caramelo. Receita da vovó, feito no dia.",
-          "preco": 12.0,
-          "categoria": "SOBREMESA",
-          "disponivel": true,
-          "imagemPath": "exemplos-json/imagens/pudim.jpg"
-        },
-        "qtda": 1,
-        "precoUnitario": 12.0
-      },
-      {
-        "itemCardapio": {
-          "nome": "Mungunzá",
-          "descricao": "Sobremesa típica nordestina feita com milho branco, leite de coco, canela e açúcar. Servida fria.",
-          "preco": 10.0,
-          "categoria": "SOBREMESA",
-          "disponivel": true,
-          "imagemPath": "exemplos-json/imagens/munguzza.jpg"
-        },
-        "qtda": 1,
-        "precoUnitario": 10.0
-      },
-      {
-        "itemCardapio": {
-          "nome": "Carne de Sol na Chapa",
-          "descricao": "Carne de sol grelhada na chapa, acompanhada de arroz, feijão, farofa e vinagrete. Porção individual.",
-          "preco": 45.0,
-          "categoria": "PRATO_PRINCIPAL",
-          "disponivel": true,
-          "imagemPath": "exemplos-json/imagens/carne_de_sol.jpg"
-        },
-        "qtda": 1,
-        "precoUnitario": 45.0
-      }
-    ],
-    "valorTotal": 67.0,
-    "statusPedido": "ENTREGUE"
-  },
-  {
-    "id": "744fb34e-3d86-40e8-85fc-e4a781ebbd7e",
-    "cpfCliente": "878.882.730-50",
-    "dataHora": "28/06/2026 15:34",
+    "id": "e2a7565f-a2f4-4f13-87e4-163dabfad310",
+    "cpfCliente": "14915121488",
+    "dataHora": "01/07/2026 22:42",
     "itensDoPedido": [
       {
         "itemCardapio": {
@@ -253,74 +46,41 @@
           "disponivel": true,
           "imagemPath": "exemplos-json/imagens/caldo_feijao.jpg"
         },
-        "qtda": 2,
+        "qtda": 1,
         "precoUnitario": 12.5
-      }
-    ],
-    "valorTotal": 25.0,
-    "statusPedido": "ENTREGUE"
-  },
-  {
-    "id": "5fd5a198-df4d-4005-944e-134678867817",
-    "cpfCliente": "878.882.730-50",
-    "dataHora": "28/06/2026 20:14",
-    "itensDoPedido": [
-      {
-        "itemCardapio": {
-          "nome": "ItemDeTeste",
-          "descricao": "Não quero botar nada",
-          "preco": 100.0,
-          "categoria": "PRATO_PRINCIPAL",
-          "disponivel": true,
-          "imagemPath": "/home/marcosos/IdeaProjects/POO.2026.1-main/exemplos-json/imagens/munguzza.jpg"
-        },
-        "qtda": 2,
-        "precoUnitario": 100.0
       },
       {
         "itemCardapio": {
-          "nome": "Baião de Dois",
-          "descricao": "Prato clássico nordestino com arroz, feijão-verde, queijo coalho, carne-seca desfiada e manteiga de garrafa.",
-          "preco": 38.9,
-          "categoria": "PRATO_PRINCIPAL",
+          "nome": "Macaxeira Frita",
+          "descricao": "Macaxeira cozida e frita na hora, crocante por fora e macia por dentro. Servida com manteiga de garrafa.",
+          "preco": 14.0,
+          "categoria": "ENTRADA",
           "disponivel": true,
-          "imagemPath": "exemplos-json/imagens/baiao_de_dois.jpg"
+          "imagemPath": "exemplos-json/imagens/macaxeira_frita.jpg"
         },
         "qtda": 1,
-        "precoUnitario": 38.9
-      },
-      {
-        "itemCardapio": {
-          "nome": "Carne de Sol na Chapa",
-          "descricao": "Carne de sol grelhada na chapa, acompanhada de arroz, feijão, farofa e vinagrete. Porção individual.",
-          "preco": 45.0,
-          "categoria": "PRATO_PRINCIPAL",
-          "disponivel": true,
-          "imagemPath": "exemplos-json/imagens/carne_de_sol.jpg"
-        },
-        "qtda": 1,
-        "precoUnitario": 45.0
+        "precoUnitario": 14.0
       }
     ],
-    "valorTotal": 283.9,
-    "statusPedido": "ENTREGUE"
+    "valorTotal": 26.5,
+    "statusPedido": "CANCELADO"
   },
   {
-    "id": "0326f519-6836-4b27-a4ac-2bd2a7426125",
-    "cpfCliente": "878.882.730-50",
-    "dataHora": "28/06/2026 22:01",
+    "id": "c9b216c9-1ef3-487f-ae1d-9469d2e6e6b9",
+    "cpfCliente": "14915121488",
+    "dataHora": "01/07/2026 22:42",
     "itensDoPedido": [
       {
         "itemCardapio": {
           "nome": "Mungunzá",
           "descricao": "Sobremesa típica nordestina feita com milho branco, leite de coco, canela e açúcar. Servida fria.",
-          "preco": 40.0,
+          "preco": 10.0,
           "categoria": "SOBREMESA",
           "disponivel": true,
           "imagemPath": "exemplos-json/imagens/munguzza.jpg"
         },
-        "qtda": 1,
-        "precoUnitario": 40.0
+        "qtda": 2,
+        "precoUnitario": 10.0
       },
       {
         "itemCardapio": {
@@ -333,57 +93,214 @@
         },
         "qtda": 1,
         "precoUnitario": 12.0
-      }
-    ],
-    "valorTotal": 52.0,
-    "statusPedido": "ENTREGUE"
-  },
-  {
-    "id": "538af48e-2f3b-429d-a8b6-163b6a00d2cf",
-    "cpfCliente": "878.882.730-50",
-    "dataHora": "29/06/2026 09:31",
-    "itensDoPedido": [
+      },
       {
         "itemCardapio": {
-          "nome": "ItemDeTeste",
-          "descricao": "Não quero botar nada",
-          "preco": 100.0,
-          "categoria": "PRATO_PRINCIPAL",
+          "nome": "Suco de Framboesa",
+          "descricao": "Suco de framboesa fabricado em Sukita-SP/BR",
+          "preco": 24.5,
+          "categoria": "BEBIDA",
           "disponivel": true,
-          "imagemPath": "/home/marcosos/IdeaProjects/POO.2026.1-main/exemplos-json/imagens/munguzza.jpg"
+          "imagemPath": "exemplos-json/imagens/suco_umbu.jpg"
         },
         "qtda": 2,
-        "precoUnitario": 100.0
+        "precoUnitario": 24.5
       }
     ],
-    "valorTotal": 200.0,
-    "statusPedido": "ENTREGUE"
+    "valorTotal": 81.0,
+    "statusPedido": "CANCELADO"
   },
   {
-    "id": "e092322a-73ca-4541-bb6c-813a45fb4cdb",
-    "cpfCliente": "878.882.730-50",
-    "dataHora": "29/06/2026 10:02",
+    "id": "bf7d1e04-2bb4-414e-8120-c92f21c206c8",
+    "cpfCliente": "14915121488",
+    "dataHora": "01/07/2026 22:43",
     "itensDoPedido": [
       {
         "itemCardapio": {
-          "nome": "ItemDeTeste",
-          "descricao": "Não quero botar nada",
-          "preco": 100.0,
-          "categoria": "PRATO_PRINCIPAL",
+          "nome": "Macaxeira Frita",
+          "descricao": "Macaxeira cozida e frita na hora, crocante por fora e macia por dentro. Servida com manteiga de garrafa.",
+          "preco": 14.0,
+          "categoria": "ENTRADA",
           "disponivel": true,
-          "imagemPath": "/home/marcosos/IdeaProjects/POO.2026.1-main/exemplos-json/imagens/munguzza.jpg"
+          "imagemPath": "exemplos-json/imagens/macaxeira_frita.jpg"
         },
         "qtda": 1,
-        "precoUnitario": 100.0
+        "precoUnitario": 14.0
+      },
+      {
+        "itemCardapio": {
+          "nome": "Moqueca de Camarão",
+          "descricao": "Camarões frescos cozidos em leite de coco, azeite de dendê, tomate e coentro. Acompanha arroz e pirão.",
+          "preco": 62.0,
+          "categoria": "PRATO_PRINCIPAL",
+          "disponivel": true
+        },
+        "qtda": 1,
+        "precoUnitario": 62.0
       }
     ],
-    "valorTotal": 100.0,
+    "valorTotal": 76.0,
     "statusPedido": "ENTREGUE"
   },
   {
-    "id": "8d265576-524c-4bac-826b-b74eab1101ee",
-    "cpfCliente": "878.882.730-50",
-    "dataHora": "29/06/2026 21:31",
+    "id": "0ad390a6-f35e-4713-a9c1-0433c0d032ae",
+    "cpfCliente": "14915121488",
+    "dataHora": "02/07/2026 09:57",
+    "itensDoPedido": [
+      {
+        "itemCardapio": {
+          "nome": "Mungunzá",
+          "descricao": "Sobremesa típica nordestina feita com milho branco, leite de coco, canela e açúcar. Servida fria.",
+          "preco": 10.0,
+          "categoria": "SOBREMESA",
+          "disponivel": true,
+          "imagemPath": "exemplos-json/imagens/munguzza.jpg"
+        },
+        "qtda": 2,
+        "precoUnitario": 10.0
+      },
+      {
+        "itemCardapio": {
+          "nome": "Pudim de Leite Condensado",
+          "descricao": "Pudim cremoso de leite condensado com calda de caramelo. Receita da vovó, feito no dia.",
+          "preco": 12.0,
+          "categoria": "SOBREMESA",
+          "disponivel": true,
+          "imagemPath": "exemplos-json/imagens/pudim.jpg"
+        },
+        "qtda": 1,
+        "precoUnitario": 12.0
+      },
+      {
+        "itemCardapio": {
+          "nome": "Suco de Framboesa",
+          "descricao": "Suco de framboesa fabricado em Sukita-SP/BR",
+          "preco": 24.5,
+          "categoria": "BEBIDA",
+          "disponivel": true,
+          "imagemPath": "exemplos-json/imagens/suco_umbu.jpg"
+        },
+        "qtda": 1,
+        "precoUnitario": 24.5
+      },
+      {
+        "itemCardapio": {
+          "nome": "Carne de Sol na Chapa",
+          "descricao": "Carne de sol grelhada na chapa, acompanhada de arroz, feijão, farofa e vinagrete. Porção individual.",
+          "preco": 45.0,
+          "categoria": "PRATO_PRINCIPAL",
+          "disponivel": true,
+          "imagemPath": "exemplos-json/imagens/carne_de_sol.jpg"
+        },
+        "qtda": 1,
+        "precoUnitario": 45.0
+      },
+      {
+        "itemCardapio": {
+          "nome": "Moqueca de Camarão",
+          "descricao": "Camarões frescos cozidos em leite de coco, azeite de dendê, tomate e coentro. Acompanha arroz e pirão.",
+          "preco": 62.0,
+          "categoria": "PRATO_PRINCIPAL",
+          "disponivel": true
+        },
+        "qtda": 2,
+        "precoUnitario": 62.0
+      },
+      {
+        "itemCardapio": {
+          "nome": "Caldo de Feijão",
+          "descricao": "Caldo temperado com linguiça calabresa, couve manteiga e bacon. Servido bem quente, acompanhado de torradas.",
+          "preco": 12.5,
+          "categoria": "ENTRADA",
+          "disponivel": true,
+          "imagemPath": "exemplos-json/imagens/caldo_feijao.jpg"
+        },
+        "qtda": 1,
+        "precoUnitario": 12.5
+      },
+      {
+        "itemCardapio": {
+          "nome": "Macaxeira Frita",
+          "descricao": "Macaxeira cozida e frita na hora, crocante por fora e macia por dentro. Servida com manteiga de garrafa.",
+          "preco": 14.0,
+          "categoria": "ENTRADA",
+          "disponivel": true,
+          "imagemPath": "exemplos-json/imagens/macaxeira_frita.jpg"
+        },
+        "qtda": 1,
+        "precoUnitario": 14.0
+      }
+    ],
+    "valorTotal": 252.0,
+    "statusPedido": "ENTREGUE"
+  },
+  {
+    "id": "05b25d8a-f6df-4fa4-a73f-ded438e2773f",
+    "cpfCliente": "14915121488",
+    "dataHora": "02/07/2026 09:58",
+    "itensDoPedido": [
+      {
+        "itemCardapio": {
+          "nome": "Macaxeira Frita",
+          "descricao": "Macaxeira cozida e frita na hora, crocante por fora e macia por dentro. Servida com manteiga de garrafa.",
+          "preco": 14.0,
+          "categoria": "ENTRADA",
+          "disponivel": true,
+          "imagemPath": "exemplos-json/imagens/macaxeira_frita.jpg"
+        },
+        "qtda": 2,
+        "precoUnitario": 14.0
+      }
+    ],
+    "valorTotal": 28.0,
+    "statusPedido": "ENTREGUE"
+  },
+  {
+    "id": "241eb4e2-6cfd-452c-b2f7-95b9c0d3f688",
+    "cpfCliente": "14915121488",
+    "dataHora": "02/07/2026 09:58",
+    "itensDoPedido": [
+      {
+        "itemCardapio": {
+          "nome": "Suco de Framboesa",
+          "descricao": "Suco de framboesa fabricado em Sukita-SP/BR",
+          "preco": 24.5,
+          "categoria": "BEBIDA",
+          "disponivel": true,
+          "imagemPath": "exemplos-json/imagens/suco_umbu.jpg"
+        },
+        "qtda": 2,
+        "precoUnitario": 24.5
+      }
+    ],
+    "valorTotal": 49.0,
+    "statusPedido": "ENTREGUE"
+  },
+  {
+    "id": "e3711b42-d95e-46e9-a664-261782e5a18d",
+    "cpfCliente": "14915121488",
+    "dataHora": "02/07/2026 09:58",
+    "itensDoPedido": [
+      {
+        "itemCardapio": {
+          "nome": "Baião de Dois",
+          "descricao": "Prato clássico nordestino com arroz, feijão-verde, queijo coalho, carne-seca desfiada e manteiga de garrafa.",
+          "preco": 38.9,
+          "categoria": "PRATO_PRINCIPAL",
+          "disponivel": true,
+          "imagemPath": "exemplos-json/imagens/baiao_de_dois.jpg"
+        },
+        "qtda": 2,
+        "precoUnitario": 38.9
+      }
+    ],
+    "valorTotal": 77.8,
+    "statusPedido": "CANCELADO"
+  },
+  {
+    "id": "050cc6a0-7389-4a40-8198-ddd254322090",
+    "cpfCliente": "14915121488",
+    "dataHora": "04/07/2026 12:37",
     "itensDoPedido": [
       {
         "itemCardapio": {
@@ -411,45 +328,100 @@
       }
     ],
     "valorTotal": 39.0,
-    "statusPedido": "CANCELADO"
+    "statusPedido": "EM_PREPARO"
   },
   {
-    "id": "667256e5-d084-4a76-8cee-1b78a11cf6a9",
-    "cpfCliente": "878.882.730-50",
-    "dataHora": "29/06/2026 21:31",
+    "id": "c1e61469-c8f9-4bdb-9a3b-acebbbae3ac6",
+    "cpfCliente": "14915121488",
+    "dataHora": "04/07/2026 12:37",
     "itensDoPedido": [
       {
         "itemCardapio": {
-          "nome": "Caldo de Feijão",
-          "descricao": "Caldo temperado com linguiça calabresa, couve manteiga e bacon. Servido bem quente, acompanhado de torradas.",
-          "preco": 12.5,
-          "categoria": "ENTRADA",
+          "nome": "Mungunzá",
+          "descricao": "Sobremesa típica nordestina feita com milho branco, leite de coco, canela e açúcar. Servida fria.",
+          "preco": 10.0,
+          "categoria": "SOBREMESA",
           "disponivel": true,
-          "imagemPath": "exemplos-json/imagens/caldo_feijao.jpg"
+          "imagemPath": "exemplos-json/imagens/munguzza.jpg"
         },
         "qtda": 2,
-        "precoUnitario": 12.5
+        "precoUnitario": 10.0
+      },
+      {
+        "itemCardapio": {
+          "nome": "Pudim de Leite Condensado",
+          "descricao": "Pudim cremoso de leite condensado com calda de caramelo. Receita da vovó, feito no dia.",
+          "preco": 12.0,
+          "categoria": "SOBREMESA",
+          "disponivel": true,
+          "imagemPath": "exemplos-json/imagens/pudim.jpg"
+        },
+        "qtda": 1,
+        "precoUnitario": 12.0
       }
     ],
-    "valorTotal": 25.0,
-    "statusPedido": "CANCELADO"
+    "valorTotal": 32.0,
+    "statusPedido": "EM_PREPARO"
   },
   {
-    "id": "9c1e4504-d03f-41f9-ba79-be6692e61047",
-    "cpfCliente": "776.798.950-07",
-    "dataHora": "29/06/2026 22:19",
+    "id": "1b19b2aa-4ee8-41df-9af5-683c38ce1b49",
+    "cpfCliente": "14915121488",
+    "dataHora": "04/07/2026 12:37",
     "itensDoPedido": [
+      {
+        "itemCardapio": {
+          "nome": "Suco de Framboesa",
+          "descricao": "Suco de framboesa fabricado em Sukita-SP/BR",
+          "preco": 24.5,
+          "categoria": "BEBIDA",
+          "disponivel": true,
+          "imagemPath": "exemplos-json/imagens/suco_umbu.jpg"
+        },
+        "qtda": 2,
+        "precoUnitario": 24.5
+      },
       {
         "itemCardapio": {
           "nome": "Baião de Dois",
           "descricao": "Prato clássico nordestino com arroz, feijão-verde, queijo coalho, carne-seca desfiada e manteiga de garrafa.",
-          "preco": 59.9,
+          "preco": 38.9,
           "categoria": "PRATO_PRINCIPAL",
           "disponivel": true,
           "imagemPath": "exemplos-json/imagens/baiao_de_dois.jpg"
         },
+        "qtda": 2,
+        "precoUnitario": 38.9
+      },
+      {
+        "itemCardapio": {
+          "nome": "Moqueca de Camarão",
+          "descricao": "Camarões frescos cozidos em leite de coco, azeite de dendê, tomate e coentro. Acompanha arroz e pirão.",
+          "preco": 62.0,
+          "categoria": "PRATO_PRINCIPAL",
+          "disponivel": true
+        },
         "qtda": 1,
-        "precoUnitario": 59.9
+        "precoUnitario": 62.0
+      }
+    ],
+    "valorTotal": 188.8,
+    "statusPedido": "CANCELADO"
+  },
+  {
+    "id": "5d91f472-d985-4792-8ce2-3c4729b676d9",
+    "cpfCliente": "14915121488",
+    "dataHora": "04/07/2026 12:38",
+    "itensDoPedido": [
+      {
+        "itemCardapio": {
+          "nome": "Moqueca de Camarão",
+          "descricao": "Camarões frescos cozidos em leite de coco, azeite de dendê, tomate e coentro. Acompanha arroz e pirão.",
+          "preco": 62.0,
+          "categoria": "PRATO_PRINCIPAL",
+          "disponivel": true
+        },
+        "qtda": 1,
+        "precoUnitario": 62.0
       },
       {
         "itemCardapio": {
@@ -464,28 +436,7 @@
         "precoUnitario": 45.0
       }
     ],
-    "valorTotal": 104.9,
-    "statusPedido": "CANCELADO"
-  },
-  {
-    "id": "f12deef3-fd58-42bc-9bce-b0f006c3278d",
-    "cpfCliente": "776.798.950-07",
-    "dataHora": "29/06/2026 22:20",
-    "itensDoPedido": [
-      {
-        "itemCardapio": {
-          "nome": "ItemDeTeste",
-          "descricao": "Não quero botar nada",
-          "preco": 100.0,
-          "categoria": "PRATO_PRINCIPAL",
-          "disponivel": true,
-          "imagemPath": "/home/marcosos/IdeaProjects/POO.2026.1-main/exemplos-json/imagens/munguzza.jpg"
-        },
-        "qtda": 1,
-        "precoUnitario": 100.0
-      }
-    ],
-    "valorTotal": 100.0,
-    "statusPedido": "ENTREGUE"
+    "valorTotal": 107.0,
+    "statusPedido": "AGUARDANDO_CONFIRMACAO"
   }
 ]

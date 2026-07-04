@@ -550,6 +550,7 @@ public class TelaPainelGerente {
                 listaCardapio.getItems().remove(indiceSelecionado);
 
                 System.out.println("Item excluído com sucesso!");
+                carregarItensDoCardapio();
             }
         }catch(ItemVinculadoException e){
             exibirAlertaInformativo("Ação bloqueada","Item não pode ser removido do cardapio: ",e.getMessage());
@@ -560,29 +561,27 @@ public class TelaPainelGerente {
 
     private void ativarDesativarItem() {
 
-        try {// 1. Pega o índice da linha selecionada na ListView
+        try {
             int indiceSelecionado = listaCardapio.getSelectionModel().getSelectedIndex();
-
             // Se nada estiver selecionado, avisa o gerente
             if (indiceSelecionado == -1) {
                 exibirAlertaInformativo("Aviso", "Nenhum item selecionado", "Por favor, selecione um item do cardápio para ativar ou desativar.");
                 return;
             }
-            // 2. Busca o item real (Objeto) correspondente no seu Controller
+            // Busca o item real (Objeto) correspondente no seu Controller
             CardapioController cardapioController = new CardapioController();
             ItemCardapio item = cardapioController.obterCardapio().get(indiceSelecionado);
-            // 3. Inverte o status atual (Se era true vira false, se era false vira true)
+            // Inverte o status atual (Se era true vira false, se era false vira true)
             boolean novoStatus = !item.isDisponivel();
             cardapioController.mudarDisponibilidadeDoItem(novoStatus, item.getNome());
 
-            // 4. Atualiza o texto da linha na ListView para refletir a mudança
-            // Criamos uma etiqueta [INDISPONÍVEL] caso o item tenha sido desativado
+            // Atualiza o texto da linha na ListView para refletir a mudança
+            // [INDISPONÍVEL] caso o item tenha sido desativado
             String statusTexto = novoStatus ? "" : " [INDISPONÍVEL]";
             String linhaTextoAtualizada = item.getNome() + " - R$ " + String.format("%.2f", item.getPreco()) + statusTexto;
             listaCardapio.getItems().set(indiceSelecionado, linhaTextoAtualizada);
 
 
-            // 5. Exibe um feedback rápido no console ou tela
 
             String mensagemFeedback = novoStatus ? "ativado" : "desativado";
             System.out.println("O item \"" + item.getNome() + "\" foi " + mensagemFeedback + " com sucesso!");
@@ -610,15 +609,15 @@ public class TelaPainelGerente {
             PedidoController pedidoController = new PedidoController();
 
             pedidoController.avancarStatusDoPedido(pedidoSelecionado.getId());
-
-            // 4. Feedback de sucesso
-            Alert sucesso = new Alert(Alert.AlertType.INFORMATION, "Status do pedido atualizado com sucesso!");
+            // Feedback de sucesso
+            carregarPedidosDoDia();
+            String statusPedido = pedidoController.obterListaDeTodosOsPedidos().stream().filter(p -> p.getId().equalsIgnoreCase(pedidoSelecionado.getId())).map(p -> p.getStatusPedido().getStatus()).findFirst().orElse("Status não capturado | Erro ");
+            System.out.printf("Status do pedido atualizado para: %s%n",statusPedido);
+            Alert sucesso = new Alert(Alert.AlertType.INFORMATION, String.format("Status do pedido atualizado para: %s%n",statusPedido));
             sucesso.setTitle("Sucesso");
             sucesso.setHeaderText(null);
             sucesso.showAndWait();
 
-            // 5. Recarrega a lista na tela para mostrar o novo status imediatamente!
-            carregarPedidosDoDia();
 
         } catch (StatusInvalidoException erro) {
             // Captura a sua exceção personalizada caso quebre o peso do status
@@ -645,10 +644,14 @@ public class TelaPainelGerente {
             carregarPedidosDoDia();
         }catch(CancelamentoNaoPermitidoException e){
             System.err.println("Erro ao tantar cancelar pedido: "+e.getMessage());
+            exibirAlertaInformativo("Erro","Cancelamento não permitido",e.getMessage());
         }catch(IllegalArgumentException e){
             System.err.println("Erro ao tentar cancelar objeto com valor null: "+e.getMessage());
+            exibirAlertaInformativo("Erro","Selecione um item",e.getMessage());
         }catch(IdInvalidoException e){
             System.err.println("Erro: "+e.getMessage());
+            exibirAlertaInformativo("Erro","Erro ao procurar ID",e.getMessage());
+
         }
 
 

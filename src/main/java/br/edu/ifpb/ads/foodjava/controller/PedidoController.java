@@ -1,16 +1,11 @@
 package br.edu.ifpb.ads.foodjava.controller;
 
-
-import br.edu.ifpb.ads.foodjava.exception.ItemVinculadoException;
-import br.edu.ifpb.ads.foodjava.exception.StatusInvalidoException;
 import br.edu.ifpb.ads.foodjava.model.ItemCardapio;
 import br.edu.ifpb.ads.foodjava.model.PedidoPreMoldado;
 
 import br.edu.ifpb.ads.foodjava.model.Carrinho;
 import br.edu.ifpb.ads.foodjava.model.Pedido;
 
-import br.edu.ifpb.ads.foodjava.model.enums.StatusPedido;
-import br.edu.ifpb.ads.foodjava.repository.CardapioRepository;
 import br.edu.ifpb.ads.foodjava.repository.PedidoRepository;
 import br.edu.ifpb.ads.foodjava.util.UsuarioLogadoNoSistema;
 

@@ -47,7 +47,7 @@ public class TelaHistoricoCliente {
         configurarEventos();
         carregarHistorico();
 
-        Scene cena = new Scene(layout, 550, 400);
+        Scene cena = new Scene(layout, 750, 600);
         stage.setScene(cena);
     }
 
@@ -106,15 +106,20 @@ public class TelaHistoricoCliente {
                     pedidoController.cancelarPedido(pedidoSelecionado);
 
                     new Alert(Alert.AlertType.INFORMATION, "Pedido cancelado com sucesso!").showAndWait();
+                    System.out.println("Pedido cancelado com sucesso...");
                     carregarHistorico();
 
                 } catch (StatusInvalidoException erro) {
-                    // Se o restaurante já aceitou o pedido, a exceção é capturada e exibe o erro
                     Alert alertaErro = new Alert(Alert.AlertType.ERROR, erro.getMessage());
                     alertaErro.setTitle("Cancelamento Negado");
                     alertaErro.showAndWait();
                 }catch(CancelamentoNaoPermitidoException er){
                     System.err.println("Erro: "+er.getMessage());
+                    Alert alertaSucesso = new Alert(Alert.AlertType.INFORMATION);
+                    alertaSucesso.setTitle("Erro!");
+                    alertaSucesso.setHeaderText(null);
+                    alertaSucesso.setContentText("Erro: "+er.getMessage());
+                    alertaSucesso.showAndWait();
                 }catch(IllegalArgumentException erO){
                     System.err.println("Erro: "+erO.getMessage());
                 }catch(Exception erroGeral){

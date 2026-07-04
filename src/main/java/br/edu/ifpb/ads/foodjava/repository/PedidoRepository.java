@@ -90,7 +90,7 @@ public class PedidoRepository implements Repository<Pedido,String> {
     **/
     public Pedido fecharPedido(String cpfDoCliente, List<PedidoPreMoldado> pedidosDoCarrinho){
         if(cpfDoCliente==null || cpfDoCliente.isEmpty()){
-            throw new IllegalArgumentException("CPF do cliente está vazio ao finalizar pedido do carrinho!");
+            throw new IllegalArgumentException("Erro ao buscar CPF do cliente para finalizar pedido do carrinho!");
         }
         if(pedidosDoCarrinho==null || pedidosDoCarrinho.isEmpty()){
             throw new CarrinhoVazioException("Não foi possível finalizar pedido, motivo: Carrinho vazio!");
@@ -124,6 +124,11 @@ public class PedidoRepository implements Repository<Pedido,String> {
         }
     }
 
+    /**
+     * @param id;
+     * @throws IdInvalidoException;
+     * @throws CancelamentoNaoPermitidoException;
+     */
     public void cancelarPedidoNoRepository(String id){
         if(id==null){
             throw new IdInvalidoException("Pedido não encontrado");
@@ -141,6 +146,7 @@ public class PedidoRepository implements Repository<Pedido,String> {
         }
         if(alterou){
             salvarListaDePedidosNoArquivo(lista);
+            System.out.println("Pedido cancelado com sucesso");
         }else{
             throw new CancelamentoNaoPermitidoException("Pedido não pode ser cancelado...");
         }

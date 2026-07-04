@@ -1,11 +1,11 @@
 {
-  "nomeDoRestaurante": "IfoodJava",
-  "cnpj": "72.943.154/0001-28",
+  "nomeDoRestaurante": "ComeBem",
+  "cnpj": "07.608.226/0001-19",
   "enderecoDoRestaurante": {
-    "numeroDaCasa": 197,
-    "rua": "Severino Rodrigues",
-    "bairro": "Vila Alpha",
-    "cep": "59815032",
+    "numeroDaCasa": 549,
+    "rua": "Rua Joaquim Nambuco",
+    "bairro": "Alpha Ville",
+    "cep": "458992136",
     "cidade": "São Paulo"
   },
   "emailDoRestaurante": {
@@ -15,18 +15,18 @@
     "senha": "Marcos320_"
   },
   "gerente": {
-    "nome": "Paulo",
+    "nome": "Igor",
     "email": {
       "endereco": "r@gmail.com"
     },
     "senha": {
       "senha": "Marcos320_"
     },
-    "id": "df34dd86-0f40-41ce-91ea-49bd069b3214"
+    "id": "c57e74ab-c44a-42a9-87f5-b4dc45dd1711"
   },
-  "categoriaCulinaria": "Típica",
+  "categoriaCulinaria": "Todas",
   "contatoDoRestaurante": "87991602912",
-  "logoDoRestaurante": "",
+  "logoDoRestaurante": "/home/marcosos/IdeaProjects/POO.2026.1-main/exemplos-json/imagens/suco_umbu.jpg",
   "cardapio": {
     "cardapio": []
   }

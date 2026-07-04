@@ -77,10 +77,7 @@ public class TelaLogin {
             String senhaDigitada = passSenha.getText();
             try {
 
-                User usuario = loginController.autenticarEntradaDeUsuario(
-                        emailDigitado,
-                        senhaDigitada
-                );
+                User usuario = loginController.autenticarEntradaDeUsuario(emailDigitado, senhaDigitada);
 
                 Stage stageAtual = (Stage) btnLogin.getScene().getWindow();
 
@@ -88,10 +85,9 @@ public class TelaLogin {
 
                     TelaPainelGerente telaGerente = new TelaPainelGerente("FoodJava");
                     Scene cena = new Scene(telaGerente.getLayout(), 1200, 700);
-
                     stageAtual.setScene(cena);
-                }else if(usuario instanceof Cliente){
 
+                }else if(usuario instanceof Cliente){
 
                     UsuarioLogadoNoSistema.setUsuarioLogado((Cliente)usuario);
                     TelaPrincipalCliente telaGerente = new TelaPrincipalCliente();
@@ -120,13 +116,9 @@ public class TelaLogin {
 
         // Método para abrir a tela de cadastro ao clicar em Cadastrar ->
         btnCadastrar.setOnAction(event -> {
-            // Captura o Stage atual a partir do próprio botão clicado
+
             Stage stageAtual = (Stage) btnCadastrar.getScene().getWindow();
-
-            // Instancia a classe de cadastro que estruturamos
             TelaCadastrarCliente telaCadastro = new TelaCadastrarCliente();
-
-            // Cria a nova cena contendo o layout da tela de cadastro
             Scene cenaCadastro = new Scene(telaCadastro.getLayout(), 500, 650);
 
             // Substitui a cena mantendo o mesmo Stage (janela)

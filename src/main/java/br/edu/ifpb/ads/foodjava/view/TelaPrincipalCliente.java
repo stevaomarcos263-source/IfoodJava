@@ -1,5 +1,8 @@
 package br.edu.ifpb.ads.foodjava.view;
 
+import br.edu.ifpb.ads.foodjava.controller.CardapioController;
+import br.edu.ifpb.ads.foodjava.controller.PedidoController;
+import br.edu.ifpb.ads.foodjava.exception.CarrinhoVazioException;
 import br.edu.ifpb.ads.foodjava.model.ItemCardapio;
 import br.edu.ifpb.ads.foodjava.util.UsuarioLogadoNoSistema;
 import javafx.geometry.Insets;
@@ -12,7 +15,7 @@ public class TelaPrincipalCliente {
     private BorderPane layoutPrincipal = new BorderPane();
 
     // ATRIBUTOS ADICIONADOS PARA GERENCIAR O CARRINHO LOGICAMENTE:
-    private javafx.collections.ObservableList<br.edu.ifpb.ads.foodjava.model.ItemCardapio> itensNoCarrinho = javafx.collections.FXCollections.observableArrayList();
+    private javafx.collections.ObservableList<ItemCardapio> itensNoCarrinho = javafx.collections.FXCollections.observableArrayList();
     private double valorTotalCarrinho = 0.0;
 
     private void carregarEntradas() {
@@ -46,10 +49,8 @@ public class TelaPrincipalCliente {
             return;
         }
 
-        // 3. Busca o objeto real para podermos abater o preço dele do total
-        br.edu.ifpb.ads.foodjava.model.ItemCardapio itemParaRemover = itensNoCarrinho.get(indiceSelecionado);
+        ItemCardapio itemParaRemover = itensNoCarrinho.get(indiceSelecionado);
 
-        // 4. Abate o valor do produto do total acumulado
         valorTotalCarrinho -= itemParaRemover.getPreco();
 
         // Garante que o total não fique negativo por dízimas periódicas de ponto flutuante
@@ -88,29 +89,16 @@ public class TelaPrincipalCliente {
 
         if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
             try {
-                // 3. Cria a instância do Pedido
-                // OBS: Ajuste os parâmetros de acordo com o construtor da sua classe Pedido.java
-                // Geralmente: (List<ItemCardapio> itens, String nomeCliente, double total, String status)
 
-
-                // 4. Instancia o controller de Pedidos para salvar no JSON
-                // OBS: Certifique-se de que seu PedidoController possui o método de adicionar/salvar
-                br.edu.ifpb.ads.foodjava.controller.PedidoController pedidoController =
-                        new br.edu.ifpb.ads.foodjava.controller.PedidoController();
+               PedidoController pedidoController = new PedidoController();
 
                 pedidoController.cadastrarNovoPedido(new java.util.ArrayList<>(itensNoCarrinho));
 
-                // Se o seu controller tiver um método salvar/adicionar, chame-o aqui:
-                // pedidoController.adicionarPedido(novoPedido);
-
-
-                // 5. Limpa o carrinho após o sucesso
                 itensNoCarrinho.clear();
                 listaCarrinho.getItems().clear();
                 valorTotalCarrinho = 0.0;
                 lblTotal.setText("Total: R$ 0,00");
 
-                // 6. Feedback de Sucesso
                 Alert alertaSucesso = new Alert(Alert.AlertType.INFORMATION);
                 alertaSucesso.setTitle("Sucesso!");
                 alertaSucesso.setHeaderText(null);
@@ -119,13 +107,15 @@ public class TelaPrincipalCliente {
 
                 System.out.println("Pedido registrado com sucesso no sistema.");
 
-            } catch (Exception erro) {
+            } catch (CarrinhoVazioException erro) {
                 System.err.println("Erro ao salvar pedido: " + erro.getMessage());
                 Alert alertaErro = new Alert(Alert.AlertType.ERROR);
                 alertaErro.setTitle("Erro");
                 alertaErro.setHeaderText("Falha ao processar pedido");
                 alertaErro.setContentText("Não foi possível salvar o seu pedido. Tente novamente.");
                 alertaErro.showAndWait();
+            } catch(Exception e){
+                System.err.println("Erro geral: "+e.getMessage());
             }
         }
     }
@@ -134,10 +124,6 @@ public class TelaPrincipalCliente {
         TelaHistoricoCliente historicoTela = new TelaHistoricoCliente(UsuarioLogadoNoSistema.getUsuarioLogado().getCpf());
         historicoTela.exibir();
     }
-
-    private void atualizarStatusPedidos() {
-    }
-
 
     private void logout() {
         // 1. Cria uma janela de confirmação para o cliente não deslogar sem querer
@@ -149,10 +135,8 @@ public class TelaPrincipalCliente {
         java.util.Optional<ButtonType> resultado = alertaConfirmacao.showAndWait();
 
         if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
-            // 2. Recupera o Stage (a janela principal) através do botão de logout
             javafx.stage.Stage stagePrincipal = (javafx.stage.Stage) btnLogout.getScene().getWindow();
 
-            // 3. Instancia a sua tela de login
             TelaLogin telaLogin = new TelaLogin();
 
             // 4. Cria a nova cena com o layout da tela de login
@@ -171,11 +155,11 @@ public class TelaPrincipalCliente {
         // Limpa o painel central para carregar a nova categoria
         painelProdutos.getChildren().clear();
 
-        br.edu.ifpb.ads.foodjava.controller.CardapioController cardapioController = new br.edu.ifpb.ads.foodjava.controller.CardapioController();
-        java.util.List<br.edu.ifpb.ads.foodjava.model.ItemCardapio> todosOsItens = cardapioController.obterCardapio();
+        CardapioController cardapioController = new CardapioController();
+        java.util.List<ItemCardapio> todosOsItens = cardapioController.obterCardapio();
 
         if (todosOsItens != null) {
-            for (br.edu.ifpb.ads.foodjava.model.ItemCardapio item : todosOsItens) {
+            for (ItemCardapio item : todosOsItens) {
 
                 // Só mostra se pertencer à categoria clicada E se estiver Ativo/Disponível pelo gerente
                 if (item.getCategoriaComida().toString().equalsIgnoreCase(categoriaNome) && item.isDisponivel()) {
@@ -263,8 +247,6 @@ public class TelaPrincipalCliente {
     private Button btnHistorico =
             new Button("Histórico");
 
-    private Button btnAtualizar =
-            new Button("Atualizar");
 
     private Button btnLogout =
             new Button("Sair");
@@ -356,7 +338,6 @@ public class TelaPrincipalCliente {
 
         rodape.getChildren().addAll(
                 btnHistorico,
-                btnAtualizar,
                 btnLogout
         );
 
@@ -395,10 +376,6 @@ public class TelaPrincipalCliente {
 
         btnHistorico.setOnAction(
                 e -> abrirHistorico()
-        );
-
-        btnAtualizar.setOnAction(
-                e -> atualizarStatusPedidos()
         );
 
         btnLogout.setOnAction(

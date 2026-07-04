@@ -14,7 +14,7 @@ import javafx.stage.Stage;
  */
 public class MainApp extends Application {
 
-    // CORREÇÃO: Agora quem dita as regras é a Controller do Restaurante
+    // quem dita as regras é a Controller do Restaurante
     private RestauranteController restauranteController = new RestauranteController();
 
     @Override

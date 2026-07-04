@@ -1,73 +1,33 @@
 [
   {
     "type": "Gerente",
-    "nome": "Paulo",
+    "nome": "Igor",
     "email": {
       "endereco": "r@gmail.com"
     },
     "senha": {
       "senha": "Marcos320_"
     },
-    "id": "df34dd86-0f40-41ce-91ea-49bd069b3214"
+    "id": "c57e74ab-c44a-42a9-87f5-b4dc45dd1711"
   },
   {
     "type": "Cliente",
-    "contato": "87991602358",
+    "contato": "8799602912",
     "endereco": {
-      "numeroDaCasa": 27,
-      "rua": "Lacerda Ric",
-      "bairro": "Alpha Ville",
-      "cep": "45892667",
+      "numeroDaCasa": 61,
+      "rua": "Rua Lacerda Campos",
+      "bairro": "Vila Nova",
+      "cep": "56600000",
       "cidade": "São Paulo"
     },
-    "cpf": "878.882.730-50",
-    "nome": "Jose",
+    "cpf": "14915121488",
+    "nome": "Jose Marcos ",
     "email": {
-      "endereco": "jose@gmail.com"
-    },
-    "senha": {
-      "senha": "Jose2006-"
-    },
-    "id": "087e7791-bf41-4ba9-bc92-42cff8640dbc"
-  },
-  {
-    "type": "Cliente",
-    "contato": "87991602358",
-    "endereco": {
-      "numeroDaCasa": 788,
-      "rua": "Tabocas",
-      "bairro": "Crostalk",
-      "cep": "89945213",
-      "cidade": "Guanabara"
-    },
-    "cpf": "232.714.210-56",
-    "nome": "Thiago",
-    "email": {
-      "endereco": "t@gmail.com"
+      "endereco": "m@gmail.com"
     },
     "senha": {
       "senha": "Marcos320_"
     },
-    "id": "7c15b5a5-875f-4fab-8acd-ae34520b79b9"
-  },
-  {
-    "type": "Cliente",
-    "contato": "87991602945",
-    "endereco": {
-      "numeroDaCasa": 77,
-      "rua": "Rua Lacerda Siqueira",
-      "bairro": "Mercedes Alpha",
-      "cep": "8469522",
-      "cidade": "Rio de Janerio"
-    },
-    "cpf": "776.798.950-07",
-    "nome": "Marcos",
-    "email": {
-      "endereco": "marcos@gmail.com"
-    },
-    "senha": {
-      "senha": "Marcos320_"
-    },
-    "id": "b4766152-0d3e-4d94-a212-6c529be55e35"
+    "id": "edf48cd7-bedc-46e3-bae5-264cfa63f260"
   }
 ]
