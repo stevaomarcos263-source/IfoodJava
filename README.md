@@ -61,8 +61,12 @@ Antes de começar, você vai precisar ter instalado em sua máquina:
 ## 💻 Como Executar o Projeto
 
 ### 1. Clone o repositório
+# Clonar
 ```bash
 git clone https://github.com/stevaomarcos263-source/IfoodJava.git
+```
+# Executar
+```bash
 cd FoodJava
 ```
 
