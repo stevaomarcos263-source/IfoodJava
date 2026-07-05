@@ -1,5 +1,6 @@
 package br.edu.ifpb.ads.foodjava.view;
 
+import br.edu.ifpb.ads.foodjava.exception.PrecoInvalidoException;
 import br.edu.ifpb.ads.foodjava.model.ItemCardapio;
 import br.edu.ifpb.ads.foodjava.model.enums.CategoriaComida;
 import br.edu.ifpb.ads.foodjava.repository.CardapioRepository;
@@ -99,15 +100,21 @@ public class TelaNovoItem{
                 CategoriaComida categoria = comboCategoria.getValue();
                 boolean disponivel = chkDisponivel.isSelected();
                 String imagemPath = txtImagemPath.getText();
+                try{
+                    // Instancia usando exatamente o seu construtor:
+                    novoItem = new ItemCardapio(nome, descricao, preco, categoria, disponivel, imagemPath);
+                    CardapioRepository cardapioRepository = new CardapioRepository();
+                    cardapioRepository.adicionarMaisUmItemNoCardapio(novoItem);
+                    System.out.println("Item adicionado com sucesso!");
+                    window.close(); // Fecha e retorna à tela principal
 
-                // Instancia usando exatamente o seu construtor:
-                novoItem = new ItemCardapio(nome, descricao, preco, categoria, disponivel, imagemPath);
-                CardapioRepository cardapioRepository = new CardapioRepository();
-                cardapioRepository.adicionarMaisUmItemNoCardapio(novoItem);
-
-                window.close(); // Fecha e retorna à tela principal
+                }catch(PrecoInvalidoException er){
+                    mostrarAlerta("Erro",er.getMessage());
+                    System.err.println("Erro: "+er.getMessage());
+                }
             } else {
                 mostrarAlerta("Erro de Validação", "Por favor, preencha todos os campos obrigatórios corretamente.");
+                System.out.println("Por favor, preencha todos os campos obrigatórios corretamente.");
             }
         });
 

@@ -1,8 +1,6 @@
 package br.edu.ifpb.ads.foodjava.repository;
 
-import br.edu.ifpb.ads.foodjava.repository.LoginRepository;
 import br.edu.ifpb.ads.foodjava.model.Restaurante;
-import br.edu.ifpb.ads.foodjava.model.Gerente;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

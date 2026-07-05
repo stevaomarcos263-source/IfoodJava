@@ -4,6 +4,7 @@ import br.edu.ifpb.ads.foodjava.exception.CancelamentoNaoPermitidoException;
 import br.edu.ifpb.ads.foodjava.exception.CarrinhoVazioException;
 import br.edu.ifpb.ads.foodjava.exception.IdInvalidoException;
 import br.edu.ifpb.ads.foodjava.exception.StatusInvalidoException;
+import br.edu.ifpb.ads.foodjava.model.ItemCardapio;
 import br.edu.ifpb.ads.foodjava.model.Pedido;
 import br.edu.ifpb.ads.foodjava.model.PedidoPreMoldado;
 import br.edu.ifpb.ads.foodjava.model.enums.StatusPedido;
@@ -161,8 +162,26 @@ public class PedidoRepository implements Repository<Pedido,String> {
      */
     public void avancarStatusDoPedidoRepository(String idPedido){
         PedidoRepository pedidoRepository = new PedidoRepository();
-
         List<Pedido> pedidos = pedidoRepository.buscarTodosOsPedidos();
+
+        CardapioRepository cardapioRepository = new CardapioRepository();
+        List<ItemCardapio> listaCardapio = cardapioRepository.buscarTodosOsItensDoCardapio();
+
+        // confere se o pedido não possui nenhum item que esteja desativado, caso exista ele lança a exceção
+        // criei esse metodo porquê ao desativar um pedido e existir algum pendendo com aquele item em específico, ele iria atualizar o pedido mesmo o item do cardápio estando desatualizado.
+        for(int i = 0; i<pedidos.size() ; i++){
+            if(pedidos.get(i).getId().equalsIgnoreCase(idPedido)){
+                List<PedidoPreMoldado> pedidoPreMoldado = pedidos.get(i).getListaPedidosPreMoldadosComItemEQuantidade();
+                for(int indice = 0; indice<pedidoPreMoldado.size() ; indice++){
+                    ItemCardapio item = pedidoPreMoldado.get(indice).getItem();
+                    if(listaCardapio.stream().anyMatch(itemCardapio -> itemCardapio.getNome().equalsIgnoreCase(item.getNome()) && itemCardapio.getDisponivel()==false)){
+                        throw new StatusInvalidoException(String.format("Pedido possui item do cardápio com status de desativado, item a seguir: %s%n",pedidoPreMoldado.get(indice).getItem().getNome()));
+                    }
+                }
+                break;
+            }
+        }
+
 
         Pedido pedidoEncontrado = pedidos.stream().filter(p -> p.getId().equalsIgnoreCase(idPedido)).findFirst().orElseThrow(() -> new IllegalArgumentException("Pedido não encontrado no banco de dados pedidos.json!"));
 

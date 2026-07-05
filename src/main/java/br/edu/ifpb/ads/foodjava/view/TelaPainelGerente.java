@@ -528,7 +528,6 @@ public class TelaPainelGerente {
             }
 
             // Busca o item real (Objeto) correspondente no seu Controller antes de apagar
-            PedidoController pedidoController = new PedidoController();
             CardapioController cardapioController = new CardapioController();
             ItemCardapio itemParaExcluir = cardapioController.obterCardapio().get(indiceSelecionado);
 
@@ -544,9 +543,7 @@ public class TelaPainelGerente {
             if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
 
                 cardapioController.removerItemDoCardapio(itemParaExcluir.getNome());
-                cardapioController.obterCardapio().remove(indiceSelecionado);
-
-                // 5. Atualiza a interface gráfica (remove o texto da ListView na hora)
+                // Atualiza a interface gráfica (remove o texto da ListView na hora)
                 listaCardapio.getItems().remove(indiceSelecionado);
 
                 System.out.println("Item excluído com sucesso!");
