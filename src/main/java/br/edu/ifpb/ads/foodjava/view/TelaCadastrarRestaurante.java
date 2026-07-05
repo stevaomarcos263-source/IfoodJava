@@ -2,7 +2,10 @@ package br.edu.ifpb.ads.foodjava.view;
 
 import br.edu.ifpb.ads.foodjava.controller.LoginController;
 import br.edu.ifpb.ads.foodjava.controller.RestauranteController;
+import br.edu.ifpb.ads.foodjava.exception.DocumentoInvalidoException;
+import br.edu.ifpb.ads.foodjava.exception.FormatoEmailInvalidoException;
 import br.edu.ifpb.ads.foodjava.exception.FormatoSenhaInvalidoException;
+import br.edu.ifpb.ads.foodjava.exception.FormatoTelefoneException;
 import br.edu.ifpb.ads.foodjava.model.Restaurante;
 
 import br.edu.ifpb.ads.foodjava.model.Endereco;
@@ -231,10 +234,24 @@ public class TelaCadastrarRestaurante {
             } catch (IllegalArgumentException e){
                 exibirAlertaErro("Campo vazio", "Verifique os dados informados", e.getMessage());
                 System.err.println("Erro em preenchimento do campo de validação: " + e.getMessage());
+
             } catch(FormatoSenhaInvalidoException e){
-                System.err.println("Erro ao criar senha: "+e.getMessage());
                 exibirAlertaErro("Erro ao criar senha: ", "Senha fraca!", e.getMessage());
-            }catch (RuntimeException e) {
+                System.err.println("Erro ao criar senha: "+e.getMessage());
+
+            } catch(FormatoTelefoneException e){
+                exibirAlertaErro("Erro", "Telefone inválido!", e.getMessage());
+                System.err.println("Erro: "+e.getMessage());
+
+            } catch(FormatoEmailInvalidoException e){
+                exibirAlertaErro("Erro", "E-mail inválido!", e.getMessage());
+                System.err.println("Erro: "+e.getMessage());
+
+            } catch(DocumentoInvalidoException e){
+                exibirAlertaErro("Erro no Cadastro", "Problemas com dados", e.getMessage());
+                System.err.println("Erro: "+e.getMessage());
+
+            } catch (RuntimeException e) {
                 // Captura as suas outras exceções customizadas de negócio
                 exibirAlertaErro("Erro no Cadastro", "Falha de Validação", e.getMessage());
                 System.err.println("Erro: " + e.getMessage());
