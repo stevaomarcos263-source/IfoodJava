@@ -1,0 +1,47 @@
+# ==========================================
+# Java (Compilação e Execução)
+# ==========================================
+*.class
+*.log
+*.jar
+*.war
+*.ear
+/target/
+/bin/
+/out/
+
+# ==========================================
+# IntelliJ IDEA
+# ==========================================
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# ==========================================
+# Controle de Versão e Arquivos do Sistema
+# ==========================================
+.DS_Store
+Thumbs.db
+
+# ==========================================
+# Banco de Dados (MySQL / Configurações locais)
+# ==========================================
+# Esconde arquivos de propriedades que possam conter sua senha do banco
+*.properties
+*.env
+*.local
+
+# Ignora dumps de backup do banco de dados que você possa gerar na raiz
+*.sql
+!/src/**/*.sql # Permite scripts SQL se eles estiverem dentro da pasta src (ex: migrations)
+
+# ==========================================
+# Arquivos JSON e Configurações de Ferramentas
+# ==========================================
+# Ignora arquivos JSON de configuração local, workspace ou gerados por ferramentas na raiz
+*.json
+# Se você tiver arquivos JSON dentro de 'src' que fazem parte do projeto (ex: dados do menu),
+# a linha abaixo garante que eles NÃO sejam ignorados:
+!/src/**/*.json
