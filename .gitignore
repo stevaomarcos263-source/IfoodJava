@@ -40,8 +40,12 @@ Thumbs.db
 # ==========================================
 # Arquivos JSON e Configurações de Ferramentas
 # ==========================================
-# Ignora arquivos JSON de configuração local, workspace ou gerados por ferramentas na raiz
+# Regra Geral: Ignora arquivos JSON locais e gerados automaticamente
 *.json
-# Se você tiver arquivos JSON dentro de 'src' que fazem parte do projeto (ex: dados do menu),
-# a linha abaixo garante que eles NÃO sejam ignorados:
+
+# EXCEÇÕES: Arquivos e pastas JSON que VOCÊ QUER manter no GitHub
 !/src/**/*.json
+!/exemplos-json/
+
+# Ignora especificamente a pasta interna de dados locais do projeto
+/src/main/resources/data/
