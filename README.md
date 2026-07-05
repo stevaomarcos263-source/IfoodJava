@@ -69,6 +69,7 @@ Acessar pasta
 ```bash
 cd FoodJava
 ```
+Executar programa 
 ```bash
 mvn javafx:run
 ```
