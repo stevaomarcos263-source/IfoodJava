@@ -61,13 +61,16 @@ Antes de começar, você vai precisar ter instalado em sua máquina:
 ## 💻 Como Executar o Projeto
 
 ### 1. Clone o repositório
-# Clonar
+Clonar
 ```bash
 git clone https://github.com/stevaomarcos263-source/IfoodJava.git
 ```
-# Executar
+Acessar pasta
 ```bash
 cd FoodJava
+```
+```bash
+mvn javafx:run
 ```
 
 ## 🗂️ Estrutura do Projeto
