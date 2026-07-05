@@ -64,7 +64,7 @@ Antes de começar, você vai precisar ter instalado em sua máquina:
 ```bash
 git clone https://github.com/stevaomarcos263-source/IfoodJava.git
 cd FoodJava
-``
+```
 
 ## 🗂️ Estrutura do Projeto
 
