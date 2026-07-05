@@ -62,5 +62,37 @@ Antes de começar, você vai precisar ter instalado em sua máquina:
 
 ### 1. Clone o repositório
 ```bash
-git clone [https://github.com/stevaomarcos263-source/IfoodJava.git](https://github.com/stevaomarcos263-source/IfoodJava.git)
+git clone https://github.com/stevaomarcos263-source/IfoodJava.git
+
 cd FoodJava
+
+## 🗂️ Estrutura do Projeto
+
+```text
+foodjava/
+├── src/
+│   └── main/
+│       ├── java/
+│       │   └── br/edu/ifpb/ads/foodjava/
+│       │       ├── MainApp.java           ← ponto de entrada da aplicação
+│       │       ├── model/                 ← entidades do domínio (Cliente, Pedido, etc.)
+│       │       ├── view/                  ← classes Java que constroem telas via código
+│       │       │                            (alternativa ao FXML quando a tela é gerada
+│       │       │                             programaticamente, sem arquivo externo)
+│       │       ├── controller/            ← controladores das telas
+│       │       ├── repository/            ← leitura e escrita de arquivos JSON
+│       │       ├── exception/             ← exceções personalizadas
+│       │       └── util/                  ← utilitários (validações, hash, etc.)
+│       └── resources/
+│           ├── fxml/                      ← arquivos .fxml criados no SceneBuilder
+│           │                                (definem o layout visual das telas de forma
+│           │                                 declarativa, separada do código Java)
+│           ├── css/                       ← folhas de estilo
+│           ├── images/                    ← imagens estáticas do sistema
+│           └── data/                      ← arquivos JSON gerados em runtime
+├── exemplos-json/
+│   ├── cardapio_exemplo.json              ← exemplo de importação de cardápio
+│   └── imagens/                           ← imagens referenciadas no JSON de exemplo
+├── pom.xml                                ← configuração Maven
+└── README.md```
+
