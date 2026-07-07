@@ -1,6 +1,7 @@
 package br.edu.ifpb.ads.foodjava.util;
 
 import br.edu.ifpb.ads.foodjava.model.Cliente;
+import br.edu.ifpb.ads.foodjava.model.Gerente;
 import br.edu.ifpb.ads.foodjava.model.User;
 
 public class UsuarioLogadoNoSistema {

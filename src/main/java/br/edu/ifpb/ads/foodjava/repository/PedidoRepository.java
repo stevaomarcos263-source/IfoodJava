@@ -1,9 +1,6 @@
 package br.edu.ifpb.ads.foodjava.repository;
 
-import br.edu.ifpb.ads.foodjava.exception.CancelamentoNaoPermitidoException;
-import br.edu.ifpb.ads.foodjava.exception.CarrinhoVazioException;
-import br.edu.ifpb.ads.foodjava.exception.IdInvalidoException;
-import br.edu.ifpb.ads.foodjava.exception.StatusInvalidoException;
+import br.edu.ifpb.ads.foodjava.exception.*;
 import br.edu.ifpb.ads.foodjava.model.ItemCardapio;
 import br.edu.ifpb.ads.foodjava.model.Pedido;
 import br.edu.ifpb.ads.foodjava.model.PedidoPreMoldado;
@@ -19,9 +16,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.util.stream.Collectors.toList;
-
-public class PedidoRepository implements Repository<Pedido,String> {
+public class PedidoRepository implements RepositoryPedido<Pedido,String> {
 
     private static final String FILE_PATH = "src/main/resources/data/pedidos.json";
 
@@ -45,14 +40,6 @@ public class PedidoRepository implements Repository<Pedido,String> {
         return buscarTodosOsPedidos().stream().filter(itemDoPedido -> itemDoPedido.getStatusPedido() == StatusPedido.CONFIRMADO || itemDoPedido.getStatusPedido() == StatusPedido.EM_PREPARO)
                 .anyMatch( listaDeCadaPedido -> listaDeCadaPedido.getListaPedidosPreMoldadosComItemEQuantidade().stream().anyMatch(pedidos -> pedidos.getItem().getNome().equalsIgnoreCase(nome)));
     }
-
-
-
-    // Filtra os pedidos pelo Status colocado no "status" como -> ( StatusPedido.EM_CONFIRMACAO );
-    public List<Pedido> filtroDeListaViaPorStatus(StatusPedido status){
-        return listaDePedidos.stream().filter(pedido -> pedido.getStatusPedido() == status).toList();
-    }
-
 
     /**
      * @param cpfDoCliente;
@@ -155,10 +142,11 @@ public class PedidoRepository implements Repository<Pedido,String> {
 
 
     /**
-     * @param idPedido
+     * @param idPedido;
      * @throws IllegalArgumentException;
      * @throws CancelamentoNaoPermitidoException;
      * @throws StatusInvalidoException;
+     * @throws ItemVinculadoException;
      */
     public void avancarStatusDoPedidoRepository(String idPedido){
         PedidoRepository pedidoRepository = new PedidoRepository();
@@ -175,7 +163,7 @@ public class PedidoRepository implements Repository<Pedido,String> {
                 for(int indice = 0; indice<pedidoPreMoldado.size() ; indice++){
                     ItemCardapio item = pedidoPreMoldado.get(indice).getItem();
                     if(listaCardapio.stream().anyMatch(itemCardapio -> itemCardapio.getNome().equalsIgnoreCase(item.getNome()) && itemCardapio.getDisponivel()==false)){
-                        throw new StatusInvalidoException(String.format("Pedido possui item do cardápio com status de desativado, item a seguir: %s%n",pedidoPreMoldado.get(indice).getItem().getNome()));
+                        throw new ItemVinculadoException(String.format("Pedido possui item do cardápio com status de desativado, item a seguir: %s%n",pedidoPreMoldado.get(indice).getItem().getNome()));
                     }
                 }
                 break;
@@ -200,20 +188,6 @@ public class PedidoRepository implements Repository<Pedido,String> {
         pedidoEncontrado.setStatusPedido(proximoStatus);
 
         pedidoRepository.atualizarStatusDoPedido(pedidoEncontrado);
-    }
-
-
-    /**
-     * @param id
-     * @return {@link Pedido}
-     */
-    // Entrega o pedido localizado pelo ID ->
-    @Override
-    public Pedido buscarPorId(String id) {
-        return listaDePedidos.stream()
-                .filter(p -> p.getId().equals(id))
-                .findFirst()
-                .orElse(null);
     }
 
     /**

@@ -31,20 +31,6 @@ public class Carrinho {
         }
     }
 
-    /**
-     * @param item;
-     */
-    public void removerItem(PedidoPreMoldado item){
-        itensDoCarrinho.remove(item);
-    }
-
-    public void limpar(){
-        itensDoCarrinho.clear();
-    }
-
-    public double getValorTotal(){
-        return itensDoCarrinho.stream().mapToDouble(PedidoPreMoldado::getSubTotal).sum();
-    }
 
     public List<PedidoPreMoldado> getItensDoCarrinho(){
         return Collections.unmodifiableList(itensDoCarrinho);

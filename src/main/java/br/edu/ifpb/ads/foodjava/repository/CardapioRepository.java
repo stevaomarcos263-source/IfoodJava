@@ -1,9 +1,6 @@
 package br.edu.ifpb.ads.foodjava.repository;
 
-import br.edu.ifpb.ads.foodjava.exception.ArquivoImportacaoException;
-import br.edu.ifpb.ads.foodjava.exception.CancelamentoNaoPermitidoException;
-import br.edu.ifpb.ads.foodjava.exception.IdInvalidoException;
-import br.edu.ifpb.ads.foodjava.exception.ItemVinculadoException;
+import br.edu.ifpb.ads.foodjava.exception.*;
 import br.edu.ifpb.ads.foodjava.model.ItemCardapio;
 import br.edu.ifpb.ads.foodjava.model.Cardapio;
 import com.google.gson.Gson;
@@ -54,7 +51,9 @@ public class CardapioRepository {
         if(novoItem != null && cardapio.stream().noneMatch(pedido -> pedido.getNome().equalsIgnoreCase(novoItem.getNome()))) {
             cardapio.add(novoItem);
             salvarListaNoArquivo(cardapio);
+            return;
         }
+        throw new ItemJaRegistradoNoCardapio("Item já existente com o mesmo nome!");
     }
 
 

@@ -69,17 +69,9 @@ public class TelaPrincipalCliente {
     }
 
     private void confirmarPedido() {
-        // 1. Valida se o carrinho não está vazio
-        if (itensNoCarrinho.isEmpty()) {
-            Alert alertaVazio = new Alert(Alert.AlertType.WARNING);
-            alertaVazio.setTitle("Carrinho Vazio");
-            alertaVazio.setHeaderText(null);
-            alertaVazio.setContentText("Adicione pelo menos um item ao carrinho antes de confirmar o pedido!");
-            alertaVazio.showAndWait();
-            return;
-        }
 
-        // 2. Janela de confirmação para o cliente
+
+        // Janela de confirmação para o cliente
         Alert alertaConfirmacao = new Alert(Alert.AlertType.CONFIRMATION);
         alertaConfirmacao.setTitle("Confirmar Pedido");
         alertaConfirmacao.setHeaderText("Finalizar sua compra");

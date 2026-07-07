@@ -1,6 +1,7 @@
 package br.edu.ifpb.ads.foodjava.model;
 
 import br.edu.ifpb.ads.foodjava.exception.DocumentoInvalidoException;
+import br.edu.ifpb.ads.foodjava.exception.FormatoTelefoneException;
 import br.edu.ifpb.ads.foodjava.util.ValidadorCNPJ;
 import br.edu.ifpb.ads.foodjava.util.ValidadorTelefone;
 
@@ -94,7 +95,9 @@ public class Restaurante {
 
     // Stters ->
     public void setContatoDoRestaurante(String contatoDoRestaurante){
-        ValidadorTelefone.isTelefone(contatoDoRestaurante);
+        if(!ValidadorTelefone.isTelefone(contatoDoRestaurante)){
+            throw new FormatoTelefoneException("Formato de telefone inválido!");
+        }
         this.contatoDoRestaurante = contatoDoRestaurante;
     }
     public void setLogoDoRestaurante(String logoDoRestaurante){

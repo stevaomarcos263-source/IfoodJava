@@ -174,6 +174,9 @@ public class TelaCadastrarCliente {
             } catch (NumberFormatException e) {
                 exibirAlertaInformativo("Número da residência","Deve conter apenas dígitos!",e.getMessage());
                 System.err.println("Erro: O número da residência deve conter apenas dígitos numéricos.");
+            } catch(CepInvalidoException e){
+                exibirAlertaInformativo("CEP","Cep inválido",e.getMessage());
+                System.err.println("Erro: "+e.getMessage());
             } catch (FormatoSenhaInvalidoException e){
                 exibirAlertaInformativo("Senha","Senha fraca",e.getMessage());
                 System.err.println("Formato de senha inválido: "+e.getMessage());
@@ -187,8 +190,8 @@ public class TelaCadastrarCliente {
                 exibirAlertaInformativo("CPF","Verifique se seu CPF está correto",e.getMessage());
                 System.err.println("Erro no documento CPF: "+e.getMessage());
             }catch(UsuarioDuplicadoException e){
-                exibirAlertaInformativo("E-mail error","E-mail já cadastrado",e.getMessage());
-                System.err.println("Erro ao cadastrar e-mail: "+e.getMessage());
+                exibirAlertaInformativo("Erro","Dados já existentes no cadastro",e.getMessage());
+                System.err.println("Erro: "+e.getMessage());
             }catch(IllegalArgumentException e){
                 Alert usuarioDuplicado = new Alert(Alert.AlertType.ERROR);
                 exibirAlertaInformativo("Campo vazio","Verifique se todos os campos foram preenchidos!",e.getMessage());

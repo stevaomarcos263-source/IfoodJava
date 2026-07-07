@@ -27,6 +27,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.List;
 
+import java.time.LocalDate;
+
 public class TelaPainelGerente {
 
     private BorderPane layoutPrincipal = new BorderPane();
@@ -311,13 +313,9 @@ public class TelaPainelGerente {
                 e -> {
                     TelaNovoItem telaCadastro = new TelaNovoItem();
                     ItemCardapio itemCadastrado = telaCadastro.exibe();
-
-                    if (itemCadastrado != null) {
-                        // 2. ATUALIZA A INTERFACE VISUAL (Adiciona o texto do item na ListView)
-                        // Como sua ListView é de String, vamos formatar como ela deve exibir o item:
+                    if(itemCadastrado!=null) {
                         String linhaTexto = itemCadastrado.getNome() + " - R$ " + String.format("%.2f", itemCadastrado.getPreco());
                         listaCardapio.getItems().add(linhaTexto);
-
                         System.out.println("Item criado e adicionado à tela com sucesso!");
                     }
                 }
@@ -485,9 +483,10 @@ public class TelaPainelGerente {
         }
     }
 
-
-
     private void carregarPedidosDoDia() {
+
+        LocalDate hoje = LocalDate.now();
+
 
         List<Pedido> pedidosFiltrado = new ArrayList<>();
         PedidoController pedidoController = new PedidoController();
@@ -495,20 +494,26 @@ public class TelaPainelGerente {
         listaPedidos.getItems().clear();
         int indice = comboFiltroStatus.getSelectionModel().getSelectedIndex();
 
+        // Retorna pedidos do dia atual e pedidos que não foram finalizados ( isso evita que eles não se percam e nunca sejam entregues )
         if(indice == 0){
-            pedidosFiltrado = todosOsPedidos;
+            pedidosFiltrado = todosOsPedidos.stream().filter( pedido -> {
+                LocalDate dataDoPedido = LocalDate.parse(pedido.getData(),Pedido.formatter);
+                boolean deHoje = dataDoPedido.isEqual(hoje);
+                boolean pedidoPendente = pedido.getStatusPedido() != StatusPedido.ENTREGUE && pedido.getStatusPedido() != StatusPedido.CANCELADO;
+                return deHoje || pedidoPendente;
+            }).toList();
         }else if (indice == 1) {
-            pedidosFiltrado = todosOsPedidos.stream().filter(p -> p.getStatusPedido() == StatusPedido.AGUARDANDO_CONFIRMACAO).toList();
+            pedidosFiltrado = todosOsPedidos.stream().filter(p -> p.getStatusPedido() == StatusPedido.AGUARDANDO_CONFIRMACAO && LocalDate.parse(p.getData(),Pedido.formatter).isEqual(hoje)).toList();
         }else if(indice == 2) {
-            pedidosFiltrado = todosOsPedidos.stream().filter(p -> p.getStatusPedido() == StatusPedido.CONFIRMADO).toList();
+            pedidosFiltrado = todosOsPedidos.stream().filter(p -> p.getStatusPedido() == StatusPedido.CONFIRMADO && LocalDate.parse(p.getData(),Pedido.formatter).isEqual(hoje)).toList();
         }else if(indice == 3){
-            pedidosFiltrado = todosOsPedidos.stream().filter(p -> p.getStatusPedido() == StatusPedido.EM_PREPARO).toList();
+            pedidosFiltrado = todosOsPedidos.stream().filter(p -> p.getStatusPedido() == StatusPedido.EM_PREPARO && LocalDate.parse(p.getData(),Pedido.formatter).isEqual(hoje)).toList();
         }else if(indice == 4){
-            pedidosFiltrado = todosOsPedidos.stream().filter(p -> p.getStatusPedido() == StatusPedido.SAIU_PARA_ENTREGA).toList();
+            pedidosFiltrado = todosOsPedidos.stream().filter(p -> p.getStatusPedido() == StatusPedido.SAIU_PARA_ENTREGA && LocalDate.parse(p.getData(),Pedido.formatter).isEqual(hoje)).toList();
         }else if(indice == 5){
-            pedidosFiltrado = todosOsPedidos.stream().filter(p -> p.getStatusPedido() == StatusPedido.ENTREGUE).toList();
+            pedidosFiltrado = todosOsPedidos.stream().filter(p -> p.getStatusPedido() == StatusPedido.ENTREGUE && LocalDate.parse(p.getData(),Pedido.formatter).isEqual(hoje)).toList();
         }else if(indice == 6){
-            pedidosFiltrado = todosOsPedidos.stream().filter(p -> p.getStatusPedido() == StatusPedido.CANCELADO).toList();
+            pedidosFiltrado = todosOsPedidos.stream().filter(p -> p.getStatusPedido() == StatusPedido.CANCELADO && LocalDate.parse(p.getData(),Pedido.formatter).isEqual(hoje)).toList();
         }
 
         listaPedidos.setPlaceholder(new Label("Nenhum pedido encontrado"));
@@ -619,9 +624,16 @@ public class TelaPainelGerente {
         } catch (StatusInvalidoException erro) {
             // Captura a sua exceção personalizada caso quebre o peso do status
             Alert alertaErro = new Alert(Alert.AlertType.ERROR, erro.getMessage());
-            alertaErro.setTitle("Erro de Sequência");
+            alertaErro.setTitle("Erro");
             alertaErro.setHeaderText("Transição Não Permitida");
             alertaErro.showAndWait();
+        }catch(ItemVinculadoException err){
+            Alert alertaErro = new Alert(Alert.AlertType.ERROR, err.getMessage());
+            alertaErro.setTitle("Erro");
+            alertaErro.setHeaderText("Transição Não Permitida");
+            alertaErro.showAndWait();
+            System.err.println("Pedido possui item dasativado");
+
         } catch (Exception e) {
             Alert erroGeral = new Alert(Alert.AlertType.ERROR, "Erro ao atualizar status: " + e.getMessage());
             erroGeral.showAndWait();
@@ -668,7 +680,7 @@ public class TelaPainelGerente {
         StringBuilder detalhes = new StringBuilder();
         detalhes.append("ID Completo: ").append(pedidoSelecionado.getId()).append("\n");
         detalhes.append("Cliente (CPF): ").append(pedidoSelecionado.getCpfCliente()).append("\n");
-        detalhes.append("Data/Hora: ").append(pedidoSelecionado.getDataHora()).append("\n");
+        detalhes.append("Data: ").append(pedidoSelecionado.getData()).append("\n");
         detalhes.append("Status Atual: ").append(pedidoSelecionado.getStatusPedido()).append("\n");
         detalhes.append("--------------------------------------------------\n");
         detalhes.append("ITENS DO PEDIDO:\n");
@@ -762,12 +774,5 @@ public class TelaPainelGerente {
             }
         }
     }
-
-
-
-
-
-
-
 
 }

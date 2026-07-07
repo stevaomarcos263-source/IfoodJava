@@ -106,7 +106,6 @@ public class TelaHistoricoCliente {
                     pedidoController.cancelarPedido(pedidoSelecionado);
 
                     new Alert(Alert.AlertType.INFORMATION, "Pedido cancelado com sucesso!").showAndWait();
-                    System.out.println("Pedido cancelado com sucesso...");
                     carregarHistorico();
 
                 } catch (StatusInvalidoException erro) {

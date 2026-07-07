@@ -1,5 +1,7 @@
 package br.edu.ifpb.ads.foodjava.view;
 
+import br.edu.ifpb.ads.foodjava.controller.CardapioController;
+import br.edu.ifpb.ads.foodjava.exception.ItemJaRegistradoNoCardapio;
 import br.edu.ifpb.ads.foodjava.exception.PrecoInvalidoException;
 import br.edu.ifpb.ads.foodjava.model.ItemCardapio;
 import br.edu.ifpb.ads.foodjava.model.enums.CategoriaComida;
@@ -27,7 +29,9 @@ public class TelaNovoItem{
 
     private ItemCardapio novoItem;
 
+
     public ItemCardapio exibe() {
+        this.novoItem = null;
         window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("FoodJava - Adicionar Item ao Cardápio");
@@ -103,12 +107,15 @@ public class TelaNovoItem{
                 try{
                     // Instancia usando exatamente o seu construtor:
                     novoItem = new ItemCardapio(nome, descricao, preco, categoria, disponivel, imagemPath);
-                    CardapioRepository cardapioRepository = new CardapioRepository();
-                    cardapioRepository.adicionarMaisUmItemNoCardapio(novoItem);
+                    CardapioController cardapioController = new CardapioController();
+                    cardapioController.adicionarItemAoCardapio(novoItem);
                     System.out.println("Item adicionado com sucesso!");
                     window.close(); // Fecha e retorna à tela principal
 
-                }catch(PrecoInvalidoException er){
+                }catch(PrecoInvalidoException er) {
+                    mostrarAlerta("Erro", er.getMessage());
+                    System.err.println("Erro: " + er.getMessage());
+                }catch(ItemJaRegistradoNoCardapio er){
                     mostrarAlerta("Erro",er.getMessage());
                     System.err.println("Erro: "+er.getMessage());
                 }

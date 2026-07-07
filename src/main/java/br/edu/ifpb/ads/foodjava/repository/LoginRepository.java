@@ -102,11 +102,6 @@ public class LoginRepository implements RepositoryLogin<User,String > {
     }
 
     @Override
-    public User buscarUsuarioPorId(String id){
-        return listaDeLogins.stream().filter(x -> x.getId().equals(id)).findFirst().orElse(null);
-    }
-
-    @Override
     public List<User> buscarTodosOsUsuarios(){
         File arquivo = new File(FILE_PATH);
         if(!arquivo.exists()){

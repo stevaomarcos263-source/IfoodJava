@@ -2,10 +2,7 @@ package br.edu.ifpb.ads.foodjava.view;
 
 import br.edu.ifpb.ads.foodjava.controller.LoginController;
 import br.edu.ifpb.ads.foodjava.controller.RestauranteController;
-import br.edu.ifpb.ads.foodjava.exception.DocumentoInvalidoException;
-import br.edu.ifpb.ads.foodjava.exception.FormatoEmailInvalidoException;
-import br.edu.ifpb.ads.foodjava.exception.FormatoSenhaInvalidoException;
-import br.edu.ifpb.ads.foodjava.exception.FormatoTelefoneException;
+import br.edu.ifpb.ads.foodjava.exception.*;
 import br.edu.ifpb.ads.foodjava.model.Restaurante;
 
 import br.edu.ifpb.ads.foodjava.model.Endereco;
@@ -13,6 +10,7 @@ import br.edu.ifpb.ads.foodjava.model.Email;
 import br.edu.ifpb.ads.foodjava.model.Senha;
 import br.edu.ifpb.ads.foodjava.model.Gerente;
 
+import br.edu.ifpb.ads.foodjava.util.UsuarioLogadoNoSistema;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -81,8 +79,6 @@ public class TelaCadastrarRestaurante {
     // Dados do Gerente Vinculado
     private Label nomeGerente = new Label("Nome do Gerente");
     private TextField txtNomeGerente = new TextField();
-    private Label cpfGerente = new Label("CPF do Gerente");
-    private TextField txtCpfGerente = new TextField();
 
     private Button btnSalvarCadastro = new Button("Cadastrar Restaurante");
     private Button btnVoltar = new Button("Voltar");
@@ -141,7 +137,7 @@ public class TelaCadastrarRestaurante {
         boxCidade.prefWidthProperty().bind(linhaEnderecoCompleto.widthProperty().multiply(0.33));
         boxCep.prefWidthProperty().bind(linhaEnderecoCompleto.widthProperty().multiply(0.33));
 
-        HBox linhaGerente = new HBox(15, new VBox(5, nomeGerente, txtNomeGerente), new VBox(5, cpfGerente, txtCpfGerente));
+        HBox linhaGerente = new HBox(15, new VBox(5, nomeGerente, txtNomeGerente));
 
         // Estilo botões
         btnSalvarCadastro.setStyle("-fx-background-color: #ff4757; -fx-text-fill: white; -fx-font-weight: bold;");
@@ -230,7 +226,10 @@ public class TelaCadastrarRestaurante {
                 Scene cenaPainel = new Scene(painelGerente.getLayout(), 950, 650);
 
                 stageAtual.setScene(cenaPainel);
-
+                UsuarioLogadoNoSistema usuarioLogadoNoSistema = new UsuarioLogadoNoSistema();
+            } catch(CepInvalidoException e){
+                exibirAlertaErro("Erro", "Verifique os dados informados", e.getMessage());
+                System.err.println("Cep inválido...");
             } catch (IllegalArgumentException e){
                 exibirAlertaErro("Campo vazio", "Verifique os dados informados", e.getMessage());
                 System.err.println("Erro em preenchimento do campo de validação: " + e.getMessage());

@@ -20,7 +20,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) {
 
-        // 1. A decisão é tomada através do método da Controller
+        // 1. A decisão é tomada através do metodo da Controller
         if (restauranteController.obterRestaurante().getNomeDoRestaurante().equalsIgnoreCase("vazio")) {
 
             // Se NÃO EXISTIR restaurante, força a abertura da tela de cadastro de primeira

@@ -1,21 +1,20 @@
 package br.edu.ifpb.ads.foodjava.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.UUID;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ArrayList;
 
-import br.edu.ifpb.ads.foodjava.exception.StatusInvalidoException;
 import br.edu.ifpb.ads.foodjava.model.enums.StatusPedido;
 
 public class Pedido {
 
-    public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+    public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     private String id;  // ->
     private String cpfCliente;
-    private String dataHora;  // ->
+    private String data;  // ->
     private List<PedidoPreMoldado> itensDoPedido;
     private double valorTotal; // ->
     private StatusPedido statusPedido; // ->
@@ -25,7 +24,7 @@ public class Pedido {
         this.cpfCliente = cpfCliente;
         itensDoPedido = new ArrayList<>(itensPedido);
         id = UUID.randomUUID().toString();
-        dataHora = LocalDateTime.now().format(formatter);
+        data = LocalDate.now().format(formatter);
         statusPedido = StatusPedido.AGUARDANDO_CONFIRMACAO;
         valorTotal = calcularTotal();
     }
@@ -37,9 +36,9 @@ public class Pedido {
                 "ID: %s%n"+
                 "CPF: %s%n"+
                 "Status: %s%n"+
-                "Data/Hora: %s%n"+
+                "Data: %s%n"+
                 "Pedidos: %s%n"+
-                "Valor total: %.2f%n",id,cpfCliente,statusPedido,dataHora,itensDoPedido,getValorTotal());
+                "Valor total: %.2f%n",id,cpfCliente,statusPedido, data,itensDoPedido,getValorTotal());
     }
     // Getters ->
     private double calcularTotal(){
@@ -55,8 +54,8 @@ public class Pedido {
     public String getCpfCliente(){
         return cpfCliente;
     }
-    public String getDataHora(){
-        return dataHora;
+    public String getData(){
+        return data;
     }
     public StatusPedido getStatusPedido(){
         return statusPedido;

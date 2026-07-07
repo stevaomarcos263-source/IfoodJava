@@ -1,5 +1,7 @@
 package br.edu.ifpb.ads.foodjava.model;
 
+import br.edu.ifpb.ads.foodjava.exception.CepInvalidoException;
+
 public class Endereco {
 
     private Integer numeroDaCasa;
@@ -50,6 +52,10 @@ public class Endereco {
        if(cep==null || cep.isBlank()){
            throw new IllegalArgumentException("CEP com endereço vazio!");
        }
+       String CEP = cep.replaceAll("\\D","");
+       if(CEP.length()!=8){
+           throw new CepInvalidoException("Cep inválido...");
+       }
         this.cep = cep.trim();
     }
     public void setCidade(String cidade){
@@ -76,22 +82,7 @@ public class Endereco {
         return cidade;
     }
 
-    /**
-     *
-     * @param numeroDaCasa;
-     * @param rua;
-     * @param bairro;
-     * @param cep;
-     * @param cidade;
-     * @throws IllegalArgumentException;
-     */
-    public void atualizarEndereco(int numeroDaCasa, String rua, String bairro, String cep, String cidade){
-        setNumeroDaCasa(numeroDaCasa);
-        setRua(rua);
-        setBairro(bairro);
-        setCidade(cidade);
-        setCep(cep);
-    }
+
     @Override
     public String toString(){
         return String.format("N° %d,%n"+
